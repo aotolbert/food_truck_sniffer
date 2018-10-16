@@ -44,5 +44,12 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+  FoodTruck.associate = function(models) {
+    // Associating FoodTruck with YelpReviews
+    // When an FoodTruck is deleted, also delete any associated YelpReviews
+    FoodTruck.hasMany(models.YelpReview, {
+      onDelete: "cascade"
+    });
+  };
   return FoodTruck;
 };
