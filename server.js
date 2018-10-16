@@ -14,6 +14,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+console.log(process.env.TWITTER_API_SECRET);
+
 var webhook = twitterWebhook.userActivity({
   serverUrl: "https://foodtrucksniffer.herokuapp.com",
   route: "/",
