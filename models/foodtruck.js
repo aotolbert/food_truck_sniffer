@@ -1,50 +1,48 @@
 module.exports = function(sequelize, DataTypes) {
   var FoodTruck = sequelize.define("FoodTruck", {
+    // From Twitter
     name: {
       type: DataTypes.TEXT,
       allowNull: false,
-      default: false,
-      },
+      default: false
+    },
+    // From Yelp
     url: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isUrl: true,
+        isUrl: true
       }
     },
+    // From Twitter
+    address: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    // From Twitter
     thumbnail: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isUrl: true,
+        isUrl: true
       }
     },
-    twitter: {
+    // From Yelp
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isUrl: true
+      }
+    },
+    // From Twitter
+    twitterId: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        contains: '@',
+        contains: "@"
       }
-    },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    lat: {
-      type: DataTypes.DECIMAL,
-      allowNull: true,
-      validate: {
-        isDecimal: true,
-      }
-    },
-    long: {
-      type: DataTypes.DECIMAL,
-      allowNull: true,
-      validate: {
-        isDecimal: true,
-      }
-    },
-  
+    }
   });
   return FoodTruck;
 };
