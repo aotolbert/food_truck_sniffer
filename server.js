@@ -23,8 +23,7 @@ var webhook = twitterWebhook.userActivity({
   consumerSecret: process.env.TWITTER_API_SECRET,
   accessToken: process.env.TWITTER_ACCESS_TOKEN,
   accessTokenSecret: process.env.TWITTER_ACCESS_SECRET,
-  environment: process.env.TWITTER_WEBHOOK_ENV,
-  app
+  environment: process.env.TWITTER_WEBHOOK_ENV
 });
 
 webhook.register();
@@ -54,6 +53,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
+app.use("/", webhook);
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
