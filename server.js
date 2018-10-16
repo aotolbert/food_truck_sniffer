@@ -18,7 +18,7 @@ console.log(process.env.TWITTER_API_SECRET);
 
 var webhook = twitterWebhook.userActivity({
   serverUrl: "https://foodtrucksniffer.herokuapp.com",
-  route: "/",
+  route: "/webhook/twitter",
   consumerKey: process.env.TWITTER_API_KEY,
   consumerSecret: process.env.TWITTER_API_SECRET,
   accessToken: process.env.TWITTER_ACCESS_TOKEN,
