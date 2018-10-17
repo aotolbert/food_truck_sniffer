@@ -38,13 +38,13 @@ webhook.getWebhook().then(function (data) {
   }
 });
 
-webhook.on("event", function(event, userId, data) {
+webhook.on("tweet_create", function(event, userId, data) {
   console.log(`----------------
 ${event}
 ------------------
 ${userId}
 ------------------
-${data.user.screen_name}----
+${data.user.screen_name}
 ${data.user.name} :
 ${data.text}`);
 });
