@@ -34,7 +34,7 @@ webhook.subscribe({
   accessTokenSecret: process.env.TWITTER_ACCESS_SECRET
 });
 
-webhook.getSubscriptions().then(function(data){
+webhook.getWebhook().then(function(data){
   console.log(data);
 });
 
