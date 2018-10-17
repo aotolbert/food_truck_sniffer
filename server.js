@@ -26,16 +26,16 @@ var webhook = twitterWebhook.userActivity({
   environment: process.env.TWITTER_WEBHOOK_ENV
 });
 
-webhook.register();
+webhook.getWebhook().then(function (data) {
+  if (!data[0].valid) {
+    webhook.register();
 
-webhook.subscribe({
-  userId: process.env.TWITTER_USER_ID,
-  accessToken: process.env.TWITTER_ACCESS_TOKEN,
-  accessTokenSecret: process.env.TWITTER_ACCESS_SECRET
-});
-
-webhook.getWebhook().then(function(data){
-  console.log(data);
+    webhook.subscribe({
+      userId: process.env.TWITTER_USER_ID,
+      accessToken: process.env.TWITTER_ACCESS_TOKEN,
+      accessTokenSecret: process.env.TWITTER_ACCESS_SECRET
+    });
+  }
 });
 
 webhook.on("event", function(event, userId, data) {
