@@ -1,6 +1,6 @@
-//foodtrucksniffer.herokuapp.com/var db = require("../models");
+var db = require("../models");
 
-https: module.exports = function(app) {
+module.exports = function(app) {
   // Load index page
   // app.get("/", function(req, res) {
   //   res.sendFile(path.join(__dirname, "../public/index.html"));
