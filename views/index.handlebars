@@ -1,33 +1,114 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-4">
+      {{msg}}
+      <h3>Trucks:</h3>
+      <ul id="example-list" class="list-group">
+        {{#each FoodTruck}}
+      {{> trucks/truck-block}}
+      {{> trucks/yelp-block}}
+        {{/each}}
+      </ul>
     </div>
+    <div class="col-lg-8" id="map">
+      <!-- <div id="map"></div> -->
+    </div>
+
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6pItobxq0v_r7pWG5w_R36jtaVw8h520&callback=initMap"></script>
+
+<script>
+  var truckOBJs = [];
+  // ["6507 Park Rd Charlotte NC", "N Tryon St Charlotte NC", "NODA Brewery"];
+  // \/\/\/ Used for labeling the markers on map \/\/\/ 
+  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
+  var labelIndex = 0;
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {
+                    lat: 35.223882, lng: -80.843922,
+                }
+            });
+            var markerPosition = { lat: 35.223882, lng: -80.843922 }
+
+            var marker = new google.maps.Marker({
+                position: markerPosition,
+                map: map,
+                title: 'Hello World!'
+            });
+    var geocoder = new google.maps.Geocoder();
+    //populates truckOBJs array with addresses from the database.
+    $.ajax("/api/trucks/", {
+      type: "GET",
+    }).then(
+      function (response) {
+        for (let i = 0; i < response.length; i++) {
+          let newOBJ = response[i];
+          console.log("Object being added to truckOBJs: " + newOBJ);
+          truckOBJs.push(newOBJ);
+        }
+        geocodeAddress(geocoder, map);
+      }
+    );
+
+
+
+
+  };
+
+  function geocodeAddress(geocoder, resultsMap) {
+    console.log("truckOBJs " + truckOBJs);
+    let v = 1;
+    for (let i = 0; i < truckOBJs.length; i++) {
+      geocoder.geocode({ 'address': truckOBJs[i].address }, function (results, status) {
+        resultsMap.setZoom(10);
+        console.log(results);
+        console.log(results[0].geometry.bounds);
+        longitude = (results[0].geometry.viewport.b.b);
+        console.log(longitude);
+
+        latitude = (results[0].geometry.viewport.f.f);
+        console.log(latitude);
+
+
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            zoom: 10,
+            position: results[0].geometry.location,
+            label: labels[labelIndex++ % labels.length],
+            animation: google.maps.Animation.DROP,
+            customInfo: "Marker " + v,
+
+          });
+          v++;
+          marker.addListener('click', toggleBounce);
+
+        }
+
+        function toggleBounce() {
+          console.log("Clicked " + this.customInfo)
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        }
+
+      });
+    }
+
+
+  };
+
+</script>
