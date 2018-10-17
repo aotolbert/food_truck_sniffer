@@ -1,6 +1,5 @@
 var db = require("../models");
 module.exports = function(app) {
-
   // GET route for getting all of the yelpreviews
   app.get("/api/yelpreviews", function(req, res) {
     var query = {};
@@ -51,13 +50,11 @@ module.exports = function(app) {
 
   // PUT route for updating yelpreviews
   app.put("/api/yelpreviews", function(req, res) {
-    db.YelpReview.update(
-      req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbYelpReview) {
+    db.YelpReview.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbYelpReview) {
       res.json(dbYelpReview);
     });
   });
