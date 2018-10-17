@@ -6,7 +6,8 @@
       <ul id="example-list" class="list-group">
         {{#each FoodTruck}}
         <li data-id="{{this.id}}" class="list-group-item">
-          {{this.name}}
+          {{this.name}}<img style="height:25px;" src="{{this.thumbnail}}" />
+          {{this.twitterId}}
         </li>
         {{/each}}
       </ul>
@@ -25,8 +26,11 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6pItobxq0v_r7pWG5w_R36jtaVw8h520&callback=initMap"></script>
 
 <script>
-  var addressquery = ["6507 Park Rd Charlotte NC", "N Tryon St Charlotte NC", "NODA Brewery"];
-
+  var truckOBJs = [];
+  // ["6507 Park Rd Charlotte NC", "N Tryon St Charlotte NC", "NODA Brewery"];
+  // \/\/\/ Used for labeling the markers on map \/\/\/ 
+  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
+  var labelIndex = 0;
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -34,30 +38,30 @@
       center: { lat: 39.8283, lng: -98.5795 }
     });
     var geocoder = new google.maps.Geocoder();
-   //populates addressquery array with addresses from the database.
+    //populates truckOBJs array with addresses from the database.
     $.ajax("/api/trucks/", {
       type: "GET",
     }).then(
       function (response) {
-        console.log(response);
         for (let i = 0; i < response.length; i++) {
-          let newAddress = response[i].address;
-          console.log(newAddress);
-          addressquery.push(newAddress);
+          let newOBJ = response[i];
+          console.log("Object being added to truckOBJs: " + newOBJ);
+          truckOBJs.push(newOBJ);
         }
-         geocodeAddress(geocoder, map);
+        geocodeAddress(geocoder, map);
       }
     );
-   
+
 
 
 
   };
 
   function geocodeAddress(geocoder, resultsMap) {
-
-    for (i = 0; i < addressquery.length; i++) {
-      geocoder.geocode({ 'address': addressquery[i] }, function (results, status) {
+    console.log("truckOBJs " + truckOBJs);
+    let v = 1;
+    for (let i = 0; i < truckOBJs.length; i++) {
+      geocoder.geocode({ 'address': truckOBJs[i].address }, function (results, status) {
         resultsMap.setZoom(10);
         console.log(results);
         console.log(results[0].geometry.bounds);
@@ -75,15 +79,18 @@
             map: resultsMap,
             zoom: 10,
             position: results[0].geometry.location,
+            label: labels[labelIndex++ % labels.length],
             animation: google.maps.Animation.DROP,
-            title: 'This is a food truck!'
+            customInfo: "Marker " + v,
 
           });
+          v++;
           marker.addListener('click', toggleBounce);
 
         }
 
         function toggleBounce() {
+          console.log("Clicked " + this.customInfo)
           if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
           } else {
