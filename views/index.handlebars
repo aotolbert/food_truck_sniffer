@@ -5,10 +5,8 @@
       <h3>Trucks:</h3>
       <ul id="example-list" class="list-group">
         {{#each FoodTruck}}
-        <li data-id="{{this.id}}" class="list-group-item">
-          <div style="font-size: medium; color:green; font-weight:bold">{{this.name}}</div><img style="height:50px;" src="{{this.thumbnail}}" />
-          {{this.twitterId}}
-        </li>
+      {{> trucks/truck-block}}
+      {{> trucks/yelp-block}}
         {{/each}}
       </ul>
     </div>

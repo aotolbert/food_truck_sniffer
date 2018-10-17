@@ -1,12 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
   var FoodTruck = sequelize.define("FoodTruck", {
-    // From Twitter
+    // From Admin input
     name: {
       type: DataTypes.TEXT,
-      allowNull: false,
-      default: false
+      allowNull: false
     },
-    // From Yelp
+    // From Admin input
     url: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -18,11 +17,13 @@ module.exports = function(sequelize, DataTypes) {
     address: {
       type: DataTypes.TEXT,
       allowNull: false
+      //We will have to set a default address to prevent issues with the map markers
     },
     // From Twitter
     thumbnail: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+      //We can set a default thumbnail
       validate: {
         isUrl: true
       }
@@ -30,12 +31,13 @@ module.exports = function(sequelize, DataTypes) {
     // From Yelp
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
+      //We can set a default thumbnail
       validate: {
         isUrl: true
       }
     },
-    // From Twitter
+    // From Admin input
     twitterId: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -43,6 +45,13 @@ module.exports = function(sequelize, DataTypes) {
         contains: "@"
       }
     }
+    // TODO: add column(s) for hours of operation. Yelp returns an object that contains "hours" that contains "open" is broken into an array of day objects (0-6):
+    // {
+    //   "is_overnight": false,
+    //   "end": "2200",
+    //   "day": 0,
+    //   "start": "1730"
+    // }
   });
   FoodTruck.associate = function(models) {
     // Associating FoodTruck with YelpReviews
