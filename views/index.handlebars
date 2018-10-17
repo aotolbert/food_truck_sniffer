@@ -25,15 +25,14 @@
 
 <script>
   var truckOBJs = [];
-  // ["6507 Park Rd Charlotte NC", "N Tryon St Charlotte NC", "NODA Brewery"];
   // \/\/\/ Used for labeling the markers on map \/\/\/ 
   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
   var labelIndex = 0;
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 3.5,
-      center: { lat: 39.8283, lng: -98.5795 }
+      zoom: 10,
+      center: { lat: 35.22, lng: -80.84 }
     });
     var geocoder = new google.maps.Geocoder();
     //populates truckOBJs array with addresses from the database.
@@ -56,7 +55,10 @@
   };
 
   function geocodeAddress(geocoder, resultsMap) {
-    console.log("truckOBJs " + truckOBJs);
+    console.log("truckOBJs " + truckOBJs[0]);
+    console.log("truckOBJs " + truckOBJs[1]);
+
+
     let v = 1;
     for (let i = 0; i < truckOBJs.length; i++) {
       geocoder.geocode({ 'address': truckOBJs[i].address }, function (results, status) {
