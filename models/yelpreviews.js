@@ -44,10 +44,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     content_time_created: {
       type: DataTypes.TEXT,
-      allowNull: true,
-      validate: {
-        isUrl: true
-      }
+      allowNull: true
     }
   });
 
