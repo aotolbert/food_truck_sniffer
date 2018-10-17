@@ -6,7 +6,8 @@ module.exports = function(app) {
   //   res.sendFile(path.join(__dirname, "../public/index.html"));
   // });
   app.get("/", function(req, res) {
-    db.FoodTruck.findAll({}).then(function(dbFoodtruck) {
+    db.FoodTruck.findAll({ include: [db.YelpReview] }).then(function(dbFoodtruck) {
+      console.log("dbFoodTruck" + dbFoodtruck);
       res.render("index", {
         msg: "This is empty Space! Handlebar message",
         FoodTruck: dbFoodtruck
