@@ -26,7 +26,7 @@ var webhook = twitterWebhook.userActivity({
   environment: process.env.TWITTER_WEBHOOK_ENV
 });
 
-webhook.getWebhook().then(function (data) {
+webhook.getWebhook().then(function(data) {
   if (!data[0].valid) {
     webhook.register();
 
@@ -40,20 +40,26 @@ webhook.getWebhook().then(function (data) {
 
 webhook.on("event", function(event, userId, data) {
   var arr = data.text.split("|")[0];
-  var address = arr.split(" ").slice(1).join(" ");
+  var address = arr
+    .split(" ")
+    .slice(1)
+    .join(" ");
 
-  db.FoodTruck.update({
-    address: address,
-    createdAt: data.created_at
-  }, {
-    where: {
-      twitterId: data.user.screen_name
+  db.FoodTruck.update(
+    {
+      address: address,
+      createdAt: data.created_at
+    },
+    {
+      where: {
+        twitterId: data.user.screen_name
+      }
     }
-  }).then(function(udpatedLocation) {
+  ).then(function(udpatedLocation) {
     console.log(udpatedLocation);
   });
-
-  console.log("Event received: " + event);
+});
+console.log("Event received: " + event);
 
 // Handlebars
 app.engine(
