@@ -38,7 +38,7 @@ webhook.getWebhook().then(function (data) {
   }
 });
 
-webhook.on("tweet_create", function(event, userId, data) {
+webhook.on("event", function(event, userId, data) {
   var arr = data.text.split("|")[0];
   var address = arr.slice(1);
   console.log(`
