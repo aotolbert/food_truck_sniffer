@@ -41,16 +41,17 @@ webhook.getWebhook().then(function (data) {
 webhook.on("event", function(event, userId, data) {
   var arr = data.text.split("|")[0];
   var address = arr.split(" ").slice(1).join(" ");
-  console.log(`
-  ${arr}
-  --------
-  ${address}`);
-  console.log(`
-------------------
-${data.user.screen_name}
-${data.user.name} :
-${data.text}`);
-});
+
+  db.FoodTruck.update({
+    address: address,
+    createdAt: data.created_at
+  }, {
+    where: {
+      twitterId: data.user.screen_name
+    }
+  });
+
+  console.log("Event received: " + event);
 
 // Handlebars
 app.engine(
