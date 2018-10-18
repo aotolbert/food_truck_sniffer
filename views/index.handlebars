@@ -1,16 +1,16 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-4">
+  <div class="row row-height">
+    <div class="col-lg-3 p-0 m-0" id="scrolly">
       {{msg}}
       <h3>Trucks:</h3>
-      <ul id="example-list" class="list-group">
         {{#each FoodTruck}}
+      {{> trucks/truck-image}}
       {{> trucks/truck-block}}
       {{> trucks/yelp-block}}
         {{/each}}
       </ul>
     </div>
-    <div class="col-lg-8" id="map">
+    <div class="col-lg-9" id="map">
       <!-- <div id="map"></div> -->
     </div>
 
