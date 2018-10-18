@@ -40,10 +40,7 @@ module.exports = function(sequelize, DataTypes) {
     // From Admin input
     twitterId: {
       type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        contains: "@"
-      }
+      allowNull: false
     }
     // TODO: add column(s) for hours of operation. Yelp returns an object that contains "hours" that contains "open" is broken into an array of day objects (0-6):
     // {
