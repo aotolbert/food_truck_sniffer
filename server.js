@@ -58,8 +58,8 @@ webhook.on("event", function(event, userId, data) {
   ).then(function(udpatedLocation) {
     console.log(udpatedLocation);
   });
+  console.log("Event received: " + event);
 });
-console.log("Event received: " + event);
 
 // Handlebars
 app.engine(
