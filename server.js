@@ -39,10 +39,13 @@ webhook.getWebhook().then(function (data) {
 });
 
 webhook.on("tweet_create", function(event, userId, data) {
-  console.log(`----------------
-${event}
-------------------
-${userId}
+  var arr = data.text.split("|")[0];
+  var address = arr.slice(1);
+  console.log(`
+  ${arr}
+  --------
+  ${address}`);
+  console.log(`
 ------------------
 ${data.user.screen_name}
 ${data.user.name} :
