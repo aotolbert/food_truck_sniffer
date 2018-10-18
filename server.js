@@ -40,7 +40,7 @@ webhook.getWebhook().then(function (data) {
 
 webhook.on("event", function(event, userId, data) {
   var arr = data.text.split("|")[0];
-  var address = arr.slice(1);
+  var address = arr.split(" ").slice(1).join(" ");
   console.log(`
   ${arr}
   --------
