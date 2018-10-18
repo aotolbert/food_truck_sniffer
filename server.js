@@ -52,7 +52,7 @@ webhook.on("event", function(event, userId, data) {
     },
     {
       where: {
-        twitterId: data.user.screen_name
+        twitterId: `@${data.user.screen_name}`
       }
     }
   ).then(function(udpatedLocation) {
