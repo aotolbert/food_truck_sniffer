@@ -65,6 +65,10 @@ app.use("/", webhook);
 require("./routes/yelpreview-api-routes")(app);
 require("./routes/trucks-api-routes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/server-side-yelp-api");
+
+// Helper
+require("./helper/yelpAPIcall");
 
 var syncOptions = { force: true };
 
