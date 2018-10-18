@@ -49,6 +49,8 @@ webhook.on("event", function(event, userId, data) {
     where: {
       twitterId: data.user.screen_name
     }
+  }).then(function(udpatedLocation) {
+    console.log(udpatedLocation);
   });
 
   console.log("Event received: " + event);
