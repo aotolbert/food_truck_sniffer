@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
         isUrl: true
       }
     },
-    content_time_created: {
+    contentTimeCreated: {
       type: DataTypes.TEXT,
       allowNull: true
     }
