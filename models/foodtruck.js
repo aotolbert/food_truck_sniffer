@@ -5,6 +5,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    //From Yelp
+    phone: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     // From Admin input
     url: {
       type: DataTypes.STRING,
@@ -19,15 +24,15 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
       //We will have to set a default address to prevent issues with the map markers
     },
-    // From Twitter
-    thumbnail: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      //We can set a default thumbnail
-      validate: {
-        isUrl: true
-      }
-    },
+    // // From Twitter
+    // thumbnail: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    //   //We can set a default thumbnail
+    //   validate: {
+    //     isUrl: true
+    //   }
+    // },
     // From Yelp
     image: {
       type: DataTypes.STRING,
@@ -39,8 +44,17 @@ module.exports = function(sequelize, DataTypes) {
     },
     // From Admin input
     twitterId: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false
+    },
+    //From Admin input
+    yelpId: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    addressUpdated: {
+      type: DataTypes.Date,
+      allowNull: true
     }
     // TODO: add column(s) for hours of operation. Yelp returns an object that contains "hours" that contains "open" is broken into an array of day objects (0-6):
     // {

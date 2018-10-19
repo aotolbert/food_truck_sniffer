@@ -35,17 +35,38 @@ module.exports = function(app) {
   app.put("/api/trucks/twitter", function(req, res) {
     // Update takes in an object describing the properties we want to update, and
     // we use where to describe which objects we want to update
-    db.Todo.update({
-      address: req.body.location
-    }, {
-      where: {
-        twiterId: req.body.screen_name
+    db.FoodTruck.update(
+      {
+        address: req.body.location,
+        addressUpdated: req.body.created_at
+      },
+      {
+        where: {
+          twiterId: req.body.screen_name
+        }
       }
-    }).then(function(dbTodo) {
-      res.json(dbTodo);
+    ).then(function(dbFoodTruck) {
+      res.json(dbFoodTruck);
     });
   });
 
+  app.put("/api/trucks/yelp", function(req, res) {
+    // Update takes in an object describing the properties we want to update, and
+    // we use where to describe which objects we want to update
+    db.FoodTruck.update(
+      {
+        address: req.body.location,
+        addressUpdated: req.body.created_at
+      },
+      {
+        where: {
+          twiterId: req.body.screen_name
+        }
+      }
+    ).then(function(dbFoodTruck) {
+      res.json(dbFoodTruck);
+    });
+  });
 
   app.delete("/api/trucks/:id", function(req, res) {
     db.FoodTruck.destroy({
