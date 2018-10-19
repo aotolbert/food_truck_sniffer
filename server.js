@@ -26,7 +26,7 @@ var webhook = twitterWebhook.userActivity({
   environment: process.env.TWITTER_WEBHOOK_ENV
 });
 
-webhook.getWebhook().then(function (data) {
+webhook.getWebhook().then(function(data) {
   if (!data[0].valid) {
     webhook.register();
 
@@ -39,8 +39,7 @@ webhook.getWebhook().then(function (data) {
 });
 
 webhook.on("tweet_create", function(event, userId, data) {
-  console.log(`----------------
-${event}
+  console.log(`${event}
 ------------------
 ${userId}
 ------------------
@@ -66,7 +65,7 @@ require("./routes/yelpreview-api-routes")(app);
 require("./routes/trucks-api-routes")(app);
 require("./routes/htmlRoutes")(app);
 
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
