@@ -38,14 +38,27 @@ webhook.getWebhook().then(function(data) {
   }
 });
 
-webhook.on("tweet_create", function(event, userId, data) {
-  console.log(`${event}
-------------------
-${userId}
-------------------
-${data.user.screen_name}
-${data.user.name} :
-${data.text}`);
+webhook.on("event", function(event, userId, data) {
+  var arr = data.text.split("|")[0];
+  var address = arr
+    .split(" ")
+    .slice(1)
+    .join(" ");
+
+  db.FoodTruck.update(
+    {
+      address: address,
+      createdAt: data.created_at
+    },
+    {
+      where: {
+        twitterId: `@${data.user.screen_name}`
+      }
+    }
+  ).then(function(udpatedLocation) {
+    console.log(udpatedLocation);
+  });
+  console.log("Event received: " + event);
 });
 
 // Handlebars
@@ -64,8 +77,12 @@ app.use("/", webhook);
 require("./routes/yelpreview-api-routes")(app);
 require("./routes/trucks-api-routes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/server-side-yelp-api");
 
-var syncOptions = { force: false };
+// Helper
+require("./helper/yelpAPIcall");
+
+var syncOptions = { force: true };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
