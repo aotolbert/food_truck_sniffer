@@ -53,6 +53,8 @@ webhook.on("event", function(event, userId, data) {
     {
       where: {
         twitterId: `@${data.user.screen_name}`
+        //Use below for demo
+        //name: data.user.screen_name
       }
     }
   ).then(function(udpatedLocation) {
