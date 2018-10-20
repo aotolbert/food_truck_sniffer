@@ -61,51 +61,55 @@ module.exports = function(sequelize, DataTypes) {
     },
     review1Text: {
       type: DataTypes.TEXT,
-      allownull: true
+      allowNull: true
     },
     review1Rating: {
       type: DataTypes.DECIMAL,
-      allownull: true
+      allowNull: true
     },
     review1Time: {
       type: DataTypes.DATE,
-      allownull: true
+      allowNull: true
     },
     review1Author: {
       type: DataTypes.DECIMAL,
-      allownull: true
+      allowNull: true
     },
     review2Text: {
       type: DataTypes.TEXT,
-      allownull: true
+      allowNull: true
     },
     review2Rating: {
       type: DataTypes.DECIMAL,
-      allownull: true
+      allowNull: true
     },
     review2Time: {
       type: DataTypes.DATE,
-      allownull: true
+      allowNull: true
     },
     review2Author: {
       type: DataTypes.DECIMAL,
-      allownull: true
+      allowNull: true
     },
     review3Text: {
       type: DataTypes.TEXT,
-      allownull: true
+      allowNull: true
     },
     review3Rating: {
       type: DataTypes.DECIMAL,
-      allownull: true
+      allowNull: true
     },
     review3Time: {
       type: DataTypes.DATE,
-      allownull: true
+      allowNull: true
     },
     review3Author: {
       type: DataTypes.DECIMAL,
-      allownull: true
+      allowNull: true
+    },
+    FoodTruckId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   });
 

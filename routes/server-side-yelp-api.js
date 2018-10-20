@@ -46,7 +46,8 @@ function runApiArray(truckArray) {
         review3Text: response.review_3_text,
         review3Rating: response.review_3_rating,
         review3Time: response.review_3_time,
-        review3Author: response.review_3_author
+        review3Author: response.review_3_author,
+        FoodTruckId: i
       }).then(function(result) {
         console.log("saved to database");
       });
