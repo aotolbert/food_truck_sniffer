@@ -71,30 +71,16 @@ module.exports = function yelpApi(input) {
         //   `)
     
                 // objects with API results exported to yelp-api-routes.js
-                 yelpTruckResult = {
-    
+                    yelpTruckResult = {
                         yelpID: id,
-                        name: company,
                         image_url: foodPicture,
-                        category: category,
-                        rating:overallRating,
+                        rating: overallRating,
                         price: price,
                         phone: phone,
-                    
-                        review_1_text : review_1_text,
-                        review_1_rating :  review_1_rating,
-                        review_1_time : review_1_time,
-                        review_1_author : review_1_author,
-                    
-                        review_2_text : review_2_text,
-                        review_2_rating :  review_2_rating,
-                        review_2_time : review_2_time,
-                        review_2_author : review_2_author,
-                    
-                        review_3_text : review_3_text,
-                        review_3_rating :  review_3_rating,
-                        review_3_time : review_3_time,
-                        review_3_author : review_3_author,
+                         reviewText: [review_1_text,review_2_text,review_3_text],
+                        reviewRating: [review_1_rating,review_2_rating,review_3_rating],
+                        reviewTime: [review_1_time,review_2_time,review_3_time],
+                        reviewAuthor: [review_1_author,review_2_author,review_3_author]
                     }
                     resolve(yelpTruckResult);
                 });

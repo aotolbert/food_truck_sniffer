@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     RestYelpId: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     RestName: {
       type: DataTypes.STRING,

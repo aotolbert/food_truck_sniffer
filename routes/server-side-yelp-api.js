@@ -15,42 +15,47 @@ db.FoodTruck.findAll({
 
 var yelpApiTimer = setInterval(function() {
   runApiArray(truckNamesFromDatabase);
-}, 90 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
+}, 60 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
 
 // server-side API call to yelp
 function runApiArray(truckArray) {
-  for (var i = 0; i < truckArray.length; i++) {
-    yelpApi(truckArray[i]).then(function(response) {
-      console.log(response);
-
-      db.YelpReview.create({
-        rating: response.rating,
-        // username: response.yelpID,
-        RestYelpId: response.yelpID,
-        RestName: response.name,
-        imageUrl: response.image_url,
-        category: response.category,
-        price: response.price,
-        phone: response.phone,
-
-        review1Text: response.review_1_text,
-        review1Rating: response.review_1_rating,
-        review1Time: response.review_1_time,
-        review1Author: response.review_1_author,
-
-        review2Text: response.review_2_text,
-        review2Rating: response.review_2_rating,
-        review2Time: response.review_2_time,
-        review2Author: response.review_2_author,
-
-        review3Text: response.review_3_text,
-        review3Rating: response.review_3_rating,
-        review3Time: response.review_3_time,
-        review3Author: response.review_3_author,
-        FoodTruckId: i
-      }).then(function(result) {
-        console.log("saved to database");
-      });
-    });
-  }
-}
+  for (let i = 0; i < truckArray.length; i++) {
+    yelpApi(truckArray[i]).then(function (response) {
+        let FoodTruckId;
+        let Response = response;
+        console.log(response);
+        db.FoodTruck.findAll({ where: { yelpId: Response.yelpID } }).then(function (dbFoodTruck) {
+            console.log(dbFoodTruck.id);
+            FoodTruckId = dbFoodTruck.id
+            db.YelpReview.destroy({
+                where: {
+                    FoodTruckId: FoodTruckId
+                }
+            }).then(function (dbFoodTruck) {
+                console.log(dbFoodTruck);
+                for (let b = 0; b < Response.reviewText.length; b++) {
+                    db.YelpReview.create({
+                        rating: Response.reviewRating[b],
+                        username: Response.reviewAuthor[b],
+                        content: Response.reviewText[b],
+                        contentTimeCreated: Response.reviewTime[b],
+                        FoodTruckId: FoodTruckId
+                    })
+                }
+                db.FoodTruck.update({
+                    phone: Response.phone,
+                    overallRating: Response.rating,
+                    image: Response.image_url,
+                    priceRating: Response.price,
+                }, {
+                        where: {
+                            id: FoodTruckId
+                        }
+                    })
+            }).then(function (result) {
+                console.log("saved to database");
+                console.log(result);
+            });
+        });
+    })
+}};

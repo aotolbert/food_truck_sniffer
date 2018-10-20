@@ -39,19 +39,23 @@ module.exports = function(sequelize, DataTypes) {
     },
     // From Admin input
     twitterId: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        contains: "@"
-      }
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    yelpId: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    //From Yelp
+    priceRating: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    //From twitter
+    addressUpdated: {
+      type: DataTypes.DATE,
+      allowNull: true
     }
-    // TODO: add column(s) for hours of operation. Yelp returns an object that contains "hours" that contains "open" is broken into an array of day objects (0-6):
-    // {
-    //   "is_overnight": false,
-    //   "end": "2200",
-    //   "day": 0,
-    //   "start": "1730"
-    // }
   });
   FoodTruck.associate = function(models) {
     // Associating FoodTruck with YelpReviews
