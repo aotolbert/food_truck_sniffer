@@ -24,6 +24,12 @@ module.exports = function(sequelize, DataTypes) {
     contentTimeCreated: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    contentUrl: {
+      type: DataTypes.TEXT
+    },
+    userImage: {
+      type: DataTypes.TEXT
     }
   });
 

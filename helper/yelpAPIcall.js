@@ -24,21 +24,36 @@ module.exports = function yelpApi(input) {
 
             fetchUrl(`https://api.yelp.com/v3/businesses/${id}/reviews`, options, function (error, meta, body) {
                 var obj = JSON.parse(body);
+            console.log("OBJ",obj.reviews[0].user);
 
                 var review_1_text = obj.reviews[0].text;
                 var review_1_rating = obj.reviews[0].rating;
                 var review_1_time = obj.reviews[0].time_created;
                 var review_1_author = obj.reviews[0].user.name;
+                var review_1_image = obj.reviews[0].user.image_url;
+                var review_1_url = obj.reviews[0].url;
+
+                
 
                 var review_2_text = obj.reviews[1].text;
                 var review_2_rating = obj.reviews[1].rating;
                 var review_2_time = obj.reviews[1].time_created;
                 var review_2_author = obj.reviews[1].user.name;
+                var review_2_image = obj.reviews[1].user.image_url;
+                var review_2_url = obj.reviews[1].url;
+
+
+                
 
                 var review_3_text = obj.reviews[2].text;
                 var review_3_rating = obj.reviews[2].rating;
                 var review_3_time = obj.reviews[2].time_created;
                 var review_3_author = obj.reviews[2].user.name;
+                var review_3_image = obj.reviews[2].user.image_url;
+                var review_3_url = obj.reviews[2].url;
+
+
+                
 
 
                 //             console.log(`
@@ -82,7 +97,9 @@ module.exports = function yelpApi(input) {
                     reviewText: [review_1_text,review_2_text,review_3_text],
                     reviewRating: [review_1_rating,review_2_rating,review_3_rating],
                     reviewTime: [review_1_time,review_2_time,review_3_time],
-                    reviewAuthor: [review_1_author,review_2_author,review_3_author]
+                    reviewAuthor: [review_1_author,review_2_author,review_3_author],
+                    reviewImage:[review_1_image,review_2_image,review_3_image],
+                    reviewUrl:[review_1_url,review_2_url,review_3_url]
                 }
                 resolve(yelpTruckResult);
             });
