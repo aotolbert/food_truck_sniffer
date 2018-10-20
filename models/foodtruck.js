@@ -21,7 +21,8 @@ module.exports = function(sequelize, DataTypes) {
     // From Twitter
     address: {
       type: DataTypes.TEXT,
-      allowNull: true
+      allowNull: false,
+      defaultValue: "Mariana Trench"
       //We will have to set a default address to prevent issues with the map markers
     },
     // // From Twitter
@@ -40,8 +41,8 @@ module.exports = function(sequelize, DataTypes) {
     // From Yelp
     image: {
       type: DataTypes.STRING,
-      allowNull: true,
-      //We can set a default thumbnail
+      allowNull: false,
+      defaultValue: "https://files.slack.com/files-pri/TASBCBPNX-FDFUDJPFY/food_truck_logo2.png",
       validate: {
         isUrl: true
       }

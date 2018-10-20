@@ -12,6 +12,7 @@ module.exports = function yelpApi(input) {
         // yelp api call
         fetchUrl(`https://api.yelp.com/v3/businesses/search?term=${input}&location=charlotte_nc`, options, function (error, meta, body) {
             var obj = JSON.parse(body);
+            // console.log("OBJ",obj);
             var result = obj.businesses[0];
             var id = result.id; // used to get the reviews from the yelp in the API call below for business reviews
             var company = result.name;

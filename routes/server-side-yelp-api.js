@@ -1,10 +1,9 @@
 var yelpApi = require("../helper/yelpAPIcall");
 var db = require("../models");
-var truckNamesFromDatabase = [];
 
 // call to the database to receive the names of the food trucks stored
 function populateArray(){
-    truckNamesFromDatabase = [];
+   let truckNamesFromDatabase = [];
     db.FoodTruck.findAll({
     attributes: ["name"]
 }).then(function (results) {
@@ -23,8 +22,8 @@ var yelpApiTimer = setInterval(function () {
 function runApiArray(truckArray) {
     for (let i = 0; i < truckArray.length; i++) {
         yelpApi(truckArray[i]).then(function (response) {
-            console.log(response);
-            console.log("truckArray[i]",truckArray[i])
+            // console.log(response);
+            // console.log("truckArray[i]",truckArray[i])
             let FoodTruckId;
             let Response = response;
             db.FoodTruck.findAll({ where: { name: truckArray[i] } }).then(function (dbFoodTruck) {
@@ -54,8 +53,8 @@ function runApiArray(truckArray) {
                             }
                         })
                 }).then(function (result) {
-                    console.log("saved to database");
-                    console.log(result);
+                    // console.log("saved to database");
+                    // console.log(result);
                 });
             });
         })
