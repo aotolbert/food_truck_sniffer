@@ -15,7 +15,7 @@ db.FoodTruck.findAll({
 
 var yelpApiTimer = setInterval(function() {
   runApiArray(truckNamesFromDatabase);
-}, 3 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
+}, 90 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
 
 // server-side API call to yelp
 function runApiArray(truckArray) {
