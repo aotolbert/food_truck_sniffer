@@ -23,19 +23,13 @@ function runApiArray(truckArray) {
         yelpApi(truckArray[i]).then(function (response) {
             let FoodTruckId;
             let Response = response;
-            console.log("response: ",response);
             db.FoodTruck.findAll({ where: { yelpId: Response.yelpID } }).then(function (dbFoodTruck) {
-
-                console.log("dbFoodTruck",dbFoodTruck);
-                console.log("dbFoodTruck.FoodTruck.id: ",dbFoodTruck[0].id);
                 FoodTruckId = dbFoodTruck[0].id
-                console.log("FoodTruckId",FoodTruckId);
                 db.YelpReview.destroy({
                     where: {
                         FoodTruckId: FoodTruckId
                     }
                 }).then(function (dbFoodTruck) {
-                    console.log("deFoodTruck: ",dbFoodTruck);
                     for (let b = 0; b < Response.reviewText.length; b++) {
                         db.YelpReview.create({
                             rating: Response.reviewRating[b],
