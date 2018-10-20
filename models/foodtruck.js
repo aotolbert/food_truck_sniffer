@@ -5,10 +5,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    //From Yelp
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     // From Admin input
     url: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         isUrl: true
       }
@@ -16,23 +21,28 @@ module.exports = function(sequelize, DataTypes) {
     // From Twitter
     address: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
+      defaultValue: "Mariana Trench"
       //We will have to set a default address to prevent issues with the map markers
     },
-    // From Twitter
-    thumbnail: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      //We can set a default thumbnail
-      validate: {
-        isUrl: true
-      }
+    // // From Twitter
+    // thumbnail: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    //   //We can set a default thumbnail
+    //   validate: {
+    //     isUrl: true
+    //   }
+    // },
+    //From Yelp
+    overallRating: {
+      type: DataTypes.STRING
     },
     // From Yelp
     image: {
       type: DataTypes.STRING,
-      allowNull: true,
-      //We can set a default thumbnail
+      allowNull: false,
+      defaultValue: "https://files.slack.com/files-pri/TASBCBPNX-FDFUDJPFY/food_truck_logo2.png",
       validate: {
         isUrl: true
       }
@@ -42,6 +52,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+<<<<<<< HEAD
     yelpId: {
       type: DataTypes.STRING,
       allowNull: false
@@ -49,6 +60,11 @@ module.exports = function(sequelize, DataTypes) {
     //From Yelp
     priceRating: {
       type: DataTypes.INTEGER,
+=======
+    //From Yelp
+    priceRating: {
+      type: DataTypes.STRING,
+>>>>>>> 46ad71bec069710c3cbd35dcdb4d65e990d4d811
       allowNull: true
     },
     //From twitter

@@ -48,11 +48,13 @@ webhook.on("event", function(event, userId, data) {
   db.FoodTruck.update(
     {
       address: address,
-      createdAt: data.created_at
+      addressUpdated: data.created_at
     },
     {
       where: {
         twitterId: `@${data.user.screen_name}`
+        //Use below for demo
+        //name: data.user.name
       }
     }
   ).then(function(udpatedLocation) {

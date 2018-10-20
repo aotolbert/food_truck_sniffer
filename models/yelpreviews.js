@@ -12,6 +12,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
+<<<<<<< HEAD
     RestYelpId: {
       type: DataTypes.STRING,
       allowNull: true
@@ -39,6 +40,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
+=======
+>>>>>>> 46ad71bec069710c3cbd35dcdb4d65e990d4d811
     content: {
       type: DataTypes.TEXT,
       allowNull: true,
@@ -47,6 +50,7 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
+<<<<<<< HEAD
     //What are these two for??//
     contentURL: {
       type: DataTypes.TEXT,
@@ -55,10 +59,13 @@ module.exports = function(sequelize, DataTypes) {
         isUrl: true
       }
     },
+=======
+>>>>>>> 46ad71bec069710c3cbd35dcdb4d65e990d4d811
     contentTimeCreated: {
       type: DataTypes.TEXT,
       allowNull: true
     },
+<<<<<<< HEAD
     review1Text: {
       type: DataTypes.TEXT,
       allowNull: true
@@ -110,6 +117,13 @@ module.exports = function(sequelize, DataTypes) {
     FoodTruckId: {
       type: DataTypes.INTEGER,
       allowNull: true
+=======
+    contentUrl: {
+      type: DataTypes.TEXT
+    },
+    userImage: {
+      type: DataTypes.TEXT
+>>>>>>> 46ad71bec069710c3cbd35dcdb4d65e990d4d811
     }
   });
 
