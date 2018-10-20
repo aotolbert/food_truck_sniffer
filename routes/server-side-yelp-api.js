@@ -24,28 +24,29 @@ function runApiArray(truckArray) {
       console.log(response);
 
       db.YelpReview.create({
-        yelpID: response.yelpID,
-        name: response.name,
-        image_url: response.image_url,
-        category: response.category,
         rating: response.rating,
+        // username: response.yelpID,
+        RestYelpId: response.yelpID,
+        RestName: response.name,
+        imageUrl: response.image_url,
+        category: response.category,
         price: response.price,
         phone: response.phone,
 
-        review_1_text: response.review_1_text,
-        review_1_rating: response.review_1_rating,
-        review_1_time: response.review_1_time,
-        review_1_author: response.review_1_author,
+        review1Text: response.review_1_text,
+        review1Rating: response.review_1_rating,
+        review1Time: response.review_1_time,
+        review1Author: response.review_1_author,
 
-        review_2_text: response.review_2_text,
-        review_2_rating: response.review_2_rating,
-        review_2_time: response.review_2_time,
-        review_2_author: response.review_2_author,
+        review2Text: response.review_2_text,
+        review2Rating: response.review_2_rating,
+        review2Time: response.review_2_time,
+        review2Author: response.review_2_author,
 
-        review_3_text: response.review_3_text,
-        review_3_rating: response.review_3_rating,
-        review_3_time: response.review_3_time,
-        review_3_author: response.review_3_author
+        review3Text: response.review_3_text,
+        review3Rating: response.review_3_rating,
+        review3Time: response.review_3_time,
+        review3Author: response.review_3_author
       }).then(function(result) {
         console.log("saved to database");
       });

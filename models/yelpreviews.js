@@ -1,22 +1,29 @@
 module.exports = function(sequelize, DataTypes) {
   var YelpReview = sequelize.define("YelpReview", {
     rating: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        isInt: true
-      }
+      type: DataTypes.DECIMAL,
+      allowNull: false
     },
+    //Why are we including this?//
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1]
       }
     },
+    RestYelpId: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    RestName: {
+      type: DataTypes.STRING,
+      allownull: false
+    },
+    //What is this for?//
     profileUrl: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
       validate: {
         isUrl: true
       }
@@ -28,13 +35,19 @@ module.exports = function(sequelize, DataTypes) {
         isUrl: true
       }
     },
+    category: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     content: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: "This is content",
       validate: {
         len: [1]
       }
     },
+    //What are these two for??//
     contentURL: {
       type: DataTypes.TEXT,
       allowNull: true,
@@ -45,6 +58,54 @@ module.exports = function(sequelize, DataTypes) {
     contentTimeCreated: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    review1Text: {
+      type: DataTypes.TEXT,
+      allownull: true
+    },
+    review1Rating: {
+      type: DataTypes.DECIMAL,
+      allownull: true
+    },
+    review1Time: {
+      type: DataTypes.DATE,
+      allownull: true
+    },
+    review1Author: {
+      type: DataTypes.DECIMAL,
+      allownull: true
+    },
+    review2Text: {
+      type: DataTypes.TEXT,
+      allownull: true
+    },
+    review2Rating: {
+      type: DataTypes.DECIMAL,
+      allownull: true
+    },
+    review2Time: {
+      type: DataTypes.DATE,
+      allownull: true
+    },
+    review2Author: {
+      type: DataTypes.DECIMAL,
+      allownull: true
+    },
+    review3Text: {
+      type: DataTypes.TEXT,
+      allownull: true
+    },
+    review3Rating: {
+      type: DataTypes.DECIMAL,
+      allownull: true
+    },
+    review3Time: {
+      type: DataTypes.DATE,
+      allownull: true
+    },
+    review3Author: {
+      type: DataTypes.DECIMAL,
+      allownull: true
     }
   });
 

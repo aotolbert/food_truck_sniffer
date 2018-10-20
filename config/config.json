@@ -9,7 +9,7 @@
   "test": {
     "username": "root",
     "password": "root" ,
-    "database": "alsdkfj",
+    "database": "foodtrucks_db",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false
