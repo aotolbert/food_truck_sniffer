@@ -28,7 +28,7 @@ module.exports = function(app) {
 
   app.post("/api/trucks", function(req, res) {
     db.FoodTruck.create(req.body).then(function(dbFoodTruck) {
-      res.json(dbFoodTruck);
+      // res.json(dbFoodTruck);
     });
   });
 

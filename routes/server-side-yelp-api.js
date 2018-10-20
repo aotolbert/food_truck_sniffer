@@ -3,27 +3,31 @@ var db = require("../models");
 var truckNamesFromDatabase = [];
 
 // call to the database to receive the names of the food trucks stored
-db.FoodTruck.findAll({
+function populateArray(){
+    truckNamesFromDatabase = [];
+    db.FoodTruck.findAll({
     attributes: ["name"]
 }).then(function (results) {
     for (var g = 0; g < results.length; g++) {
         truckNamesFromDatabase.push(results[g].dataValues.name);
     }
-});
+}).then(function(){runApiArray(truckNamesFromDatabase)})}
 
 // setInterval to make API call to yelp once per day, updating the info for each food truck
 
 var yelpApiTimer = setInterval(function () {
-    runApiArray(truckNamesFromDatabase);
+    populateArray();
 }, 30 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
 
 // server-side API call to yelp
 function runApiArray(truckArray) {
     for (let i = 0; i < truckArray.length; i++) {
         yelpApi(truckArray[i]).then(function (response) {
+            console.log(response);
+            console.log("truckArray[i]",truckArray[i])
             let FoodTruckId;
             let Response = response;
-            db.FoodTruck.findAll({ where: { yelpId: Response.yelpID } }).then(function (dbFoodTruck) {
+            db.FoodTruck.findAll({ where: { name: truckArray[i] } }).then(function (dbFoodTruck) {
                 FoodTruckId = dbFoodTruck[0].id
                 db.YelpReview.destroy({
                     where: {

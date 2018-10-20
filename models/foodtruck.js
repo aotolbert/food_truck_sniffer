@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     //From Yelp
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
     // From Admin input
@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
     // },
     //From Yelp
     overallRating: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
     },
     // From Yelp
     image: {
@@ -51,14 +51,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    //From Admin input
-    yelpId: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     //From Yelp
     priceRating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     },
     //From twitter
