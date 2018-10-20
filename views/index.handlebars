@@ -42,7 +42,7 @@
       function (response) {
         for (let i = 0; i < response.length; i++) {
           let newOBJ = response[i];
-          console.log("Object being added to truckOBJs: " + newOBJ);
+          console.log("Object being added to truckOBJs: ", newOBJ);
           truckOBJs.push(newOBJ);
         }
         geocodeAddress(geocoder, map);
@@ -55,8 +55,8 @@
   };
 
   function geocodeAddress(geocoder, resultsMap) {
-    console.log("truckOBJs " + truckOBJs[0]);
-    console.log("truckOBJs " + truckOBJs[1]);
+    console.log("truckOBJs ", truckOBJs[0]);
+    console.log("truckOBJs ", truckOBJs[1]);
 
 
     let v = 1;

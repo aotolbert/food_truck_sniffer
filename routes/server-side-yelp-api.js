@@ -16,7 +16,7 @@ function populateArray(){
 
 var yelpApiTimer = setInterval(function () {
     populateArray();
-}, 10 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
+}, 30 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
 
 // server-side API call to yelp
 function runApiArray(truckArray) {
