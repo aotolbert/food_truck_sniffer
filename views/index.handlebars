@@ -36,13 +36,7 @@
                     lat: 35.223882, lng: -80.843922,
                 }
             });
-            var markerPosition = { lat: 35.223882, lng: -80.843922 }
-
-            var marker = new google.maps.Marker({
-                position: markerPosition,
-                map: map,
-                title: 'Hello World!'
-            });
+            
     var geocoder = new google.maps.Geocoder();
     //populates truckOBJs array with addresses from the database.
     $.ajax("/api/trucks/", {
