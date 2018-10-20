@@ -14,20 +14,6 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    profileUrl: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        isUrl: true
-      }
-    },
-    imageUrl: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      validate: {
-        isUrl: true
-      }
-    },
     content: {
       type: DataTypes.TEXT,
       allowNull: false,
@@ -35,16 +21,15 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    contentURL: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      validate: {
-        isUrl: true
-      }
-    },
     contentTimeCreated: {
       type: DataTypes.TEXT,
       allowNull: true
+    },
+    contentUrl: {
+      type: DataTypes.TEXT
+    },
+    userImage: {
+      type: DataTypes.TEXT
     }
   });
 
