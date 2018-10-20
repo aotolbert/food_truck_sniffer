@@ -33,6 +33,10 @@ module.exports = function(sequelize, DataTypes) {
     //     isUrl: true
     //   }
     // },
+    //From Yelp
+    overallRating: {
+      type: DataTypes.INTEGER
+    },
     // From Yelp
     image: {
       type: DataTypes.STRING,
@@ -52,6 +56,12 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    //From Yelp
+    priceRating: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    //From twitter
     addressUpdated: {
       type: DataTypes.Date,
       allowNull: true
