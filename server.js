@@ -48,7 +48,7 @@ webhook.on("event", function(event, userId, data) {
   db.FoodTruck.update(
     {
       address: address,
-      createdAt: data.created_at
+      addressUpdated: data.created_at
     },
     {
       where: {

@@ -14,32 +14,11 @@ module.exports = function(sequelize, DataTypes) {
         len: [1]
       }
     },
-    profileUrl: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        isUrl: true
-      }
-    },
-    imageUrl: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      validate: {
-        isUrl: true
-      }
-    },
     content: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         len: [1]
-      }
-    },
-    contentURL: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      validate: {
-        isUrl: true
       }
     },
     contentTimeCreated: {
