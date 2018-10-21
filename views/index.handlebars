@@ -3,10 +3,11 @@
     <div class="col-lg-4">
       {{msg}}
       <h3>Trucks:</h3>
+      <a class="twitter-timeline" data-tweet-limit="2" data-height="100" href="https://twitter.com/HiyaFoodTruck?ref_src=twsrc%5Etfw"></a>
       <ul id="example-list" class="list-group">
         {{#each FoodTruck}}
-      {{> trucks/truck-block}}
-      {{!-- {{> trucks/yelp-block}} --}}
+        {{> trucks/truck-block}}
+        {{!-- {{> trucks/yelp-block}} --}}
         {{/each}}
       </ul>
     </div>
@@ -19,7 +20,7 @@
 
 
 
-
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6pItobxq0v_r7pWG5w_R36jtaVw8h520&callback=initMap"></script>
 
