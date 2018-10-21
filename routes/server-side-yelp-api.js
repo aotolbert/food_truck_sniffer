@@ -28,6 +28,7 @@ function runApiArray(truckArray) {
             let Response = response;
             db.FoodTruck.findAll({ where: { name: truckArray[i] } }).then(function (dbFoodTruck) {
                 FoodTruckId = dbFoodTruck[0].id
+                var dbAddressField = dbFoodTruck[0].addressUpdated;
                 db.YelpReview.destroy({
                     where: {
                         FoodTruckId: FoodTruckId
@@ -44,16 +45,35 @@ function runApiArray(truckArray) {
                             FoodTruckId: FoodTruckId
                         })
                     }
-                    db.FoodTruck.update({
-                        phone: Response.phone,
-                        overallRating: Response.rating,
-                        image: Response.image_url,
-                        priceRating: Response.price,
-                    }, {
-                            where: {
-                                id: FoodTruckId
-                            }
-                        })
+                    if (dbAddressField === null) {
+                        console.log('dbAdressField is NULL will update address to default')
+                        db.FoodTruck.update({
+                            address: Response.address,
+                            phone: Response.phone,
+                            overallRating: Response.rating,
+                            image: Response.image_url,
+                            priceRating: Response.price
+                        },
+                            {
+                                where: {
+                                    id: FoodTruckId
+                                }
+                            })
+                            console.log(Response.address,Response.phone, FoodTruckId)
+                    } else {
+                        console.log('dbAdressField has content will not update address to default')
+                        db.FoodTruck.update({
+                            phone: Response.phone,
+                            overallRating: Response.rating,
+                            image: Response.image_url,
+                            priceRating: Response.price,
+                        }, {
+                                where: {
+                                    id: FoodTruckId
+                                }
+                            })
+                    }
+
                 }).then(function (result) {
                     // console.log("saved to database");
                     // console.log(result);

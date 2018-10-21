@@ -22,6 +22,7 @@
 	<script src="https://code.jquery.com/jquery.js"></script>
 
 <script>
+  var yelpApi = require("../routes/server-side-yelp-api.js");
     var nameInput = $("#name");
   var twitterInput = $("#twitter");
   var urlInput = $("#url");
@@ -47,8 +48,11 @@
         url: urlInput
         .val()
         .trim(),
-    };
-    submitPost(newBiz);
+    }
+    
+    submitPost(newBiz).then(function(){
+    runApiArray(nameInput);
+    })
     $('nameInput').val("")
     $('twitterInput').val("")
     $('urlInput').val("")

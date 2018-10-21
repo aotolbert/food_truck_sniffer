@@ -12,11 +12,12 @@ module.exports = function yelpApi(input) {
         // yelp api call
         fetchUrl(`https://api.yelp.com/v3/businesses/search?term=${input}&location=charlotte_nc`, options, function (error, meta, body) {
             var obj = JSON.parse(body);
-            console.log("OBJ first call ",obj);
+            console.log("OBJ first call ",obj.businesses[0].location);
             var result = obj.businesses[0];
             var id = result.id; // used to get the reviews from the yelp in the API call below for business reviews
             var company = result.name;
             var foodPicture = result.image_url;
+            var address = result.location.address1;
             var category = result.categories[0].title;
             var overallRating = result.rating;
             var price = result.price;
@@ -89,6 +90,7 @@ module.exports = function yelpApi(input) {
                 // objects with API results exported to yelp-api-routes.js
                 yelpTruckResult = {
                     yelpID: id,
+                    address: address,
                     image_url: foodPicture,
                     rating: overallRating,
                     price: price,
