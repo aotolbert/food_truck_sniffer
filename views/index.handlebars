@@ -3,7 +3,7 @@
     <div class="col-lg-4">
       {{msg}}
       <h3>Trucks:</h3>
-      <a class="twitter-timeline" data-tweet-limit="2" data-height="100" href="https://twitter.com/HiyaFoodTruck?ref_src=twsrc%5Etfw"></a>
+      <div id="twitterDisplay"></div>
       <ul id="example-list" class="list-group">
         {{#each FoodTruck}}
         {{> trucks/truck-block}}
@@ -86,7 +86,10 @@
 
           });
           v++;
-          marker.addListener('click', toggleBounce);
+          marker.addListener('click', function() {
+            toggleBounce();
+            twitterEmbed();
+          });
 
         }
 
@@ -101,8 +104,13 @@
 
       });
     }
+  };
 
+  function twitterEmbed () {
+    var tweetDiv = document.getElementById("twitterDisplay");
+    var embedElement = `<a class="twitter-timeline" data-tweet-limit="2" data-width="200" data-height="300" href="https://twitter.com/${truckTwitterName}"></a>`
 
+    tweetDiv.innerHTML(embedElement);
   };
 
 </script>
