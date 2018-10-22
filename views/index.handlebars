@@ -77,13 +77,26 @@
         if (status === 'OK') {
           resultsMap.setCenter(results[0].geometry.location);
 
+          var image = {
+            url: "https://image.flaticon.com/icons/png/128/45/45904.png",
+            size: new google.maps.Size(128, 128),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 32)
+          };
+          var shape = {
+            coords: [1, 1, 1, 20, 18, 20, 18, 1],
+            type: 'poly'
+          };
+
           var marker = new google.maps.Marker({
             map: resultsMap,
             zoom: 13,
             position: results[0].geometry.location,
-            label: labels[labelIndex++ % labels.length],
+            //label: labels[labelIndex++ % labels.length],
+            icon: image,
+            shape: shape,
             animation: google.maps.Animation.DROP,
-            customInfo: "Marker " + v,
+            //customInfo: "Marker " + v,
 
           });
           v++;
