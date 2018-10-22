@@ -26,7 +26,7 @@ var webhook = twitterWebhook.userActivity({
   environment: process.env.TWITTER_WEBHOOK_ENV
 });
 
-webhook.getWebhook().then(function (data) {
+webhook.getWebhook().then(function(data) {
   if (!data[0].valid) {
     webhook.register();
 
@@ -38,15 +38,29 @@ webhook.getWebhook().then(function (data) {
   }
 });
 
-webhook.on("tweet_create", function(event, userId, data) {
-  console.log(`----------------
-${event}
-------------------
-${userId}
-------------------
-${data.user.screen_name}
-${data.user.name} :
-${data.text}`);
+webhook.on("event", function(event, userId, data) {
+  var arr = data.text.split("|")[0];
+  var address = arr
+    .split(" ")
+    .slice(1)
+    .join(" ");
+
+  db.FoodTruck.update(
+    {
+      address: address,
+      addressUpdated: data.created_at
+    },
+    {
+      where: {
+        twitterId: `@${data.user.screen_name}`
+        //Use below for demo
+        //name: data.user.name
+      }
+    }
+  ).then(function(udpatedLocation) {
+    console.log(udpatedLocation);
+  });
+  console.log("Event received: " + event);
 });
 
 // Handlebars
@@ -65,6 +79,10 @@ app.use("/", webhook);
 require("./routes/yelpreview-api-routes")(app);
 require("./routes/trucks-api-routes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/server-side-yelp-api");
+
+// Helper
+require("./helper/yelpAPIcall");
 
 var syncOptions = { force: true };
 
