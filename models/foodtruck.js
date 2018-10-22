@@ -42,7 +42,8 @@ module.exports = function(sequelize, DataTypes) {
     image: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "https://files.slack.com/files-pri/TASBCBPNX-FDFUDJPFY/food_truck_logo2.png",
+      defaultValue:
+        "https://files.slack.com/files-pri/TASBCBPNX-FDFUDJPFY/food_truck_logo2.png",
       validate: {
         isUrl: true
       }

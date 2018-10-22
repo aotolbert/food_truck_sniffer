@@ -1,12 +1,12 @@
 var db = require("../models");
 
-module.exports = function (app) {
+module.exports = function(app) {
   // Load index page
   // app.get("/", function(req, res) {
   //   res.sendFile(path.join(__dirname, "../public/index.html"));
   // });
   app.get("/", function(req, res) {
-    db.FoodTruck.findAll({ include: [db.YelpReview] }).then(function (
+    db.FoodTruck.findAll({ include: [db.YelpReview] }).then(function(
       dbFoodtruck
     ) {
       console.log("dbFoodTruck" + dbFoodtruck);
@@ -30,8 +30,8 @@ module.exports = function (app) {
   //   });
   // });
 
-// Render 404 page for any unmatched routes
-app.get("*", function (req, res) {
-  res.render("404");
-});
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
+  });
 };
