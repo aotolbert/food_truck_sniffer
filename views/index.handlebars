@@ -1,116 +1,104 @@
-<div class="container-fluid">
-  <div class="row row-height">
-    <div class="col-lg-3 p-0 m-0" id="scrolly">
-      {{msg}}
-      <h3>Trucks:</h3>
-        {{#each FoodTruck}}
-      {{> trucks/truck-image}}
-      {{> trucks/truck-block}}
-      {{> trucks/yelp-block}}
-        {{/each}}
-      </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML/CSS + Handlebars is the Devil</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row row-height">
+      <div class="col-lg-3 m-0 p-0" id="scrolly">
+        <div id="output"></div>
+      </div>
+      <div class="col-lg-9 p-0">
+        <div id="map-canvas"></div>
+      </div>
+      <div id="log"></div>
     </div>
-    <div class="col-lg-9" id="map">
-      <!-- <div id="map"></div> -->
-    </div>
-
   </div>
-</div>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6pItobxq0v_r7pWG5w_R36jtaVw8h520&callback=initMap"></script>
-
-<script>
-  var truckOBJs = [];
-  // \/\/\/ Used for labeling the markers on map \/\/\/ 
-  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
-  var labelIndex = 0;
-
-        function initMap() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 12,
-                center: {
-                    lat: 35.223882, lng: -80.843922,
-                }
-            });
-            var markerPosition = { lat: 35.223882, lng: -80.843922 }
-
-            var marker = new google.maps.Marker({
-                position: markerPosition,
-                map: map,
-                title: 'Hello World!'
-            });
-    var geocoder = new google.maps.Geocoder();
-    //populates truckOBJs array with addresses from the database.
-    $.ajax("/api/trucks/", {
-      type: "GET",
-    }).then(
-      function (response) {
-        for (let i = 0; i < response.length; i++) {
-          let newOBJ = response[i];
-          console.log("Object being added to truckOBJs: " + newOBJ);
-          truckOBJs.push(newOBJ);
-        }
-        geocodeAddress(geocoder, map);
-      }
-    );
-
-
-
-
-  };
-
-  function geocodeAddress(geocoder, resultsMap) {
-    console.log("truckOBJs " + truckOBJs[0]);
-    console.log("truckOBJs " + truckOBJs[1]);
-
-
-    let v = 1;
-    for (let i = 0; i < truckOBJs.length; i++) {
-      geocoder.geocode({ 'address': truckOBJs[i].address }, function (results, status) {
-        resultsMap.setZoom(10);
-        console.log(results);
-        console.log(results[0].geometry.bounds);
-        longitude = (results[0].geometry.viewport.b.b);
-        console.log(longitude);
-
-        latitude = (results[0].geometry.viewport.f.f);
-        console.log(latitude);
-
-
-        if (status === 'OK') {
-          resultsMap.setCenter(results[0].geometry.location);
-
-          var marker = new google.maps.Marker({
-            map: resultsMap,
-            zoom: 10,
-            position: results[0].geometry.location,
-            label: labels[labelIndex++ % labels.length],
-            animation: google.maps.Animation.DROP,
-            customInfo: "Marker " + v,
-
-          });
-          v++;
-          marker.addListener('click', toggleBounce);
-
-        }
-
-        function toggleBounce() {
-          console.log("Clicked " + this.customInfo)
-          if (marker.getAnimation() !== null) {
-            marker.setAnimation(null);
-          } else {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-          }
-        }
-
-      });
-    }
-
-
-  };
-
+  <!-- If we want a event window above the marker-->
+  <script id="location-template" type="text/x-handlebars-template">
+  <div class="location-entry">
+    <h2>{{name}}</h2>
+    <div class="body">
+      {{description}}
+    </div>
+  </div>
 </script>
+<!--Left Bar-->
+  <script id="services-template" type="text/x-handlebars-template">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="service-entry">
+              <div class='imgwrap p-0' >
+                <img src="{{serviceImage}}" style="width: 100%" />
+              </div>
+            </div>
+        </div>
+      <!-- Title Section -->
+        <div class="row ">
+          <div class="titleBox text-center">
+            <h3>{{name}}</h3>
+            <!--Icons are being difficult...-->
+            <!-- <ul class="icon text-center">
+              <li>
+                <a href="tel:{{phone}}">
+                  <img src="imgs/Phone.png" class="icon">
+                </a>
+              </li>
+              <li>
+                <a href={{directions}}>
+                  <img src="imgs/Directions.png" class="icon">
+                </a>
+              </li>
+              <li>
+                <a href={{website}} target="_blank">
+                  <img src="imgs/Internet.png" class="icon">
+                </a>
+              </li>
+            </ul> -->
+          <div class="body">
+            {{description}}
+          </div>
+        </div>
+      </div>
+    <!-- Contact Section -->
+      <div class="row">
+        <div class="list-group text-center col-12 pr-0">
+          <a href=tel:{{phone}} class="list-group-item list-group-item-action ">
+            Phone Number: {{phone}}
+          </a>
+          <a href={{website}} target="_blank" class="list-group-item list-group-item-action">
+            Website: {{website}}
+          </a>
+      </div>
+    </div>
+    <!-- Twitter Section -->
+    <div class="row">
+      <div class="service-entry">
+        <div class='imgwrap p-0' >
+          <img src="{{tweet}}" style="width: 100%" />
+        </div>
+      </div>
+    </div>
+    <!-- Yelp Section -->
+    <div class="row">
+        <div class="service-entry">
+          <div class='imgwrap p-0' >
+            <img src="{{yelp}}" style="width: 100%" />
+          </div>
+        </div>
+      </div>
+  </div>
+</script>
+  <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyA6pItobxq0v_r7pWG5w_R36jtaVw8h520'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='public/js/malvzg.js'></script>
+  <script src='public/js/wknbdz.js'></script>
+  <script src="public/js/mapMaker.js"></script>
+</body>
+</html>
