@@ -1,4 +1,3 @@
-
 var fetchUrl = require("fetch").fetchUrl;
 
 
