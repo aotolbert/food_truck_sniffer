@@ -88,7 +88,7 @@
           v++;
           marker.addListener('click', function() {
             toggleBounce();
-            twitterEmbed();
+            twitterEmbed(truckOBJs[i].twitterId);
           });
 
         }
@@ -106,9 +106,9 @@
     }
   };
 
-  function twitterEmbed () {
+  function twitterEmbed (truckTwitterName) {
     var tweetDiv = document.getElementById("twitterDisplay");
-    var embedElement = `<a class="twitter-timeline" data-tweet-limit="2" data-width="200" data-height="300" href="https://twitter.com/${truckTwitterName}"></a>`
+    var embedElement = `<a class="twitter-timeline" data-tweet-limit="2" data-height="300" href="https://twitter.com/${truckTwitterName}"></a>`
 
     tweetDiv.innerHTML(embedElement);
   };
