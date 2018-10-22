@@ -14,11 +14,10 @@ function populateArray(){
 
 // setInterval to make API call to yelp once per day, updating the info for each food truck
 
-<<<<<<< HEAD
 var yelpApiTimer = setInterval(function() {
-  runApiArray(truckNamesFromDatabase);
-}, 60 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
-
+        populateArray()
+  }, 1800 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
+  
 // server-side API call to yelp
 function runApiArray(truckArray) {
   for (let i = 0; i < truckArray.length; i++) {
@@ -61,7 +60,6 @@ function runApiArray(truckArray) {
         });
     })
 }};
-=======
 var yelpApiTimer = setInterval(function () {
     populateArray();
 }, 30 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
@@ -110,4 +108,3 @@ function runApiArray(truckArray) {
         })
     }
 }
->>>>>>> 46ad71bec069710c3cbd35dcdb4d65e990d4d811

@@ -1,3 +1,63 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Open Sans', sans-serif;
+}
+.imgBox {
+  width: 100%;
+  height: 25vh;
+  float: left;  
+  margin: none;
+}
+.imgBox2 {
+  width: 100%;
+  float: left;  
+  margin: none;
+  padding: 20px;
+}
+.map-container {
+  position: relative;
+}
+ logo {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 100px;
+  background-color: white;
+  border: 1px solid black;
+  width: 200px;
+  height: 100px;
+}
+#scrolly {
+  height:100%;
+  overflow-y: scroll; 
+}
+.row-height {
+  height: 100vh;
+}
+.titleBox {
+  width: 100%;
+  /* height: 20vh; */
+  float: left;  
+  margin: none;
+  background-color: #22b573;
+  color: #22b573;
+}
+.icon {
+  height: 50px;
+  width: 50px;
+  margin: 15px;
+  /* margin: auto; */
+}
+#map {
+  width: 100%;
+  height: 100vh;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

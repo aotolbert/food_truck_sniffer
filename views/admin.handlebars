@@ -14,6 +14,10 @@
           <label for="url">Business URL:</label>
           <input type="url" class="form-control" id="url">
         </div>
+        <div class="form-group">
+          <label for="address">Current Location / Address:</label>
+          <input type="address" class="form-control" id="address">
+        </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div>
@@ -22,9 +26,10 @@
 	<script src="https://code.jquery.com/jquery.js"></script>
 
 <script>
-    var nameInput = $("#name");
+  var nameInput = $("#name");
   var twitterInput = $("#twitter");
   var urlInput = $("#url");
+  var addressInput = $("#address");
   $('#newBiz').on("submit", handleFormSubmit)
   
   function handleFormSubmit(event) {
@@ -37,21 +42,16 @@
     }
     // Constructing a newPost object to hand to the database
     var newBiz = {
-        name: nameInput
-        .val()
-        .trim(),
-        address: "Charlotte,nc",
-        twitterId: twitterInput
-        .val()
-        .trim(),
-        url: urlInput
-        .val()
-        .trim(),
+        name: nameInput.val().trim(),
+        address: addressInput.val().trim(),
+        twitterId: twitterInput.val().trim(),
+        url: urlInput.val().trim(),
     };
     submitPost(newBiz);
     $('nameInput').val("")
     $('twitterInput').val("")
     $('urlInput').val("")
+    $('address').val("")
   }
   // Submits a new post and brings user to blog page upon completion
   function submitPost(biz) {

@@ -26,14 +26,14 @@ module.exports = function(sequelize, DataTypes) {
       //We will have to set a default address to prevent issues with the map markers
     },
     // // From Twitter
-    // thumbnail: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    //   //We can set a default thumbnail
-    //   validate: {
-    //     isUrl: true
-    //   }
-    // },
+    thumbnail: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      //We can set a default thumbnail
+      validate: {
+        isUrl: true
+      }
+    },
     //From Yelp
     overallRating: {
       type: DataTypes.STRING
@@ -52,19 +52,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-<<<<<<< HEAD
-    yelpId: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    //From Yelp
-    priceRating: {
-      type: DataTypes.INTEGER,
-=======
     //From Yelp
     priceRating: {
       type: DataTypes.STRING,
->>>>>>> 46ad71bec069710c3cbd35dcdb4d65e990d4d811
       allowNull: true
     },
     //From twitter
