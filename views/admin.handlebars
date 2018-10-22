@@ -32,6 +32,18 @@
   var addressInput = $("#address");
   $('#newBiz').on("submit", handleFormSubmit)
   
+
+  
+  $.ajax("/api/trucks/", {
+    type: "GET",
+  }).then(function(response) {
+    for (let i=0; i<response.length; i++) {
+      console.log(response);
+      console.log(response[i]);
+      }
+    }
+  )
+  
   function handleFormSubmit(event) {
     event.preventDefault();
     console.log("submit clicked")
