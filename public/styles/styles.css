@@ -1,46 +1,28 @@
 h1, h2, h3, h4, h5, h6, p {
   font-family: 'Open Sans', sans-serif;
 }
-.imgBox {
+#map-canvas {
   width: 100%;
-  height: 25vh;
-  float: left;  
-  margin: none;
-}
-.imgBox2 {
-  width: 100%;
-  float: left;  
-  margin: none;
-  padding: 20px;
-}
-.map-container {
-  position: relative;
-}
-
-logo {
-  position: absolute;
-  z-index: 100;
-  top: 0;
-  left: 100px;
-  background-color: white;
-  border: 1px solid black;
-  width: 200px;
-  height: 100px;
-}
-#scrolly {
-  height:100%;
-  overflow-y: scroll; 
-}
-.row-height {
   height: 100vh;
+  margin:0;
+  float:right;
+}
+.imgwrap{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 .titleBox {
   width: 100%;
   /* height: 20vh; */
-  float: left;  
+  float: right;  
   margin: none;
+  padding: 5px;
+  padding-top: 15px;
   background-color: #22b573;
-  color: #22b573;
+  color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
 }
 .icon {
   height: 50px;
@@ -48,13 +30,31 @@ logo {
   margin: 15px;
   /* margin: auto; */
 }
-#map {
-  width: 100%;
-  height: 100vh;
+.location-entry{
+    width:30em;
+  height:10em;
 }
-/* Optional: Makes the sample page fill the window. */
-html, body {
-  height: 100%;
+.service-entry{
+  clear:both;
+  float:none;
+  margin:0em;
+}
+ul {
+  list-style-type: none;
   margin: 0;
   padding: 0;
+  height: 100%; /* Full height */
+}
+/* li {
+  display: inline;
+} */
+#scrolly {
+  height:100%;
+  overflow-y: scroll; 
+}
+.row-height {
+  height: 100vh;
+}
+.contentWrap{
+  float:left;
 }
