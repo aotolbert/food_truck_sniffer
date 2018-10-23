@@ -21,7 +21,7 @@
 
 
 
-
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{apiKey}}&callback=initMap"></script>
 
@@ -152,8 +152,13 @@
 
       });
     }
+  };
 
+  function twitterEmbed (truckTwitterName) {
+    var tweetDiv = document.getElementById("twitterDisplay");
+    var embedElement = `<a class="twitter-timeline" data-tweet-limit="2" data-height="300" href="https://twitter.com/${truckTwitterName}"></a>`
 
+    tweetDiv.innerHTML(embedElement);
   };
 
 </script>

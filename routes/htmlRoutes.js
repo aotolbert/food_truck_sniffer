@@ -13,6 +13,7 @@ module.exports = function(app) {
       res.render("index", {
         apiKey: process.env.GOOGLE_API_KEY,
         msg: "This is empty Space! Handlebar message",
+        apiKey: process.env.GOOGLE_API_KEY,
         FoodTruck: dbFoodtruck
       });
     });
