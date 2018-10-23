@@ -12,6 +12,7 @@ module.exports = function (app) {
       console.log("dbFoodTruck" + dbFoodtruck);
       res.render("index", {
         msg: "This is empty Space! Handlebar message",
+        apiKey: process.env.GOOGLE_API_KEY,
         FoodTruck: dbFoodtruck
       });
     });
