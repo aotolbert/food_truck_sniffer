@@ -84,12 +84,12 @@ require("./routes/server-side-yelp-api");
 // Helper
 require("./helper/yelpAPIcall");
 
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
-// If running a test, set syncOptions.force to true
+// If running a test, set syncOptions.force to false
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
+  syncOptions.force = false;
 }
 
 // Starting the server, syncing our models ------------------------------------/
