@@ -14,8 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
-console.log(process.env.TWITTER_API_SECRET);
-
+//Config for Twitter Webhook
 var webhook = twitterWebhook.userActivity({
   serverUrl: "https://foodtrucksniffer.herokuapp.com",
   route: "/webhook/twitter",
@@ -26,6 +25,7 @@ var webhook = twitterWebhook.userActivity({
   environment: process.env.TWITTER_WEBHOOK_ENV
 });
 
+//Checks for registered webhook. Registers & subscribes if none is found.
 webhook.getWebhook().then(function(data) {
   if (!data[0].valid) {
     webhook.register();
@@ -38,6 +38,7 @@ webhook.getWebhook().then(function(data) {
   }
 });
 
+//On Twitter event, update the database with new address.
 webhook.on("event", function(event, userId, data) {
   var arr = data.text.split("|")[0];
   var address = arr
@@ -53,8 +54,6 @@ webhook.on("event", function(event, userId, data) {
     {
       where: {
         twitterId: `@${data.user.screen_name}`
-        //Use below for demo
-        //name: data.user.name
       }
     }
   ).then(function(udpatedLocation) {
@@ -74,8 +73,6 @@ app.set("view engine", "handlebars");
 
 // Routes
 app.use("/", webhook);
-// require("./routes/apiRoutes")(app);
-// require("./routes/apiRoutes")(app);
 require("./routes/yelpreview-api-routes")(app);
 require("./routes/trucks-api-routes")(app);
 require("./routes/htmlRoutes")(app);
