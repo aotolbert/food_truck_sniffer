@@ -11,6 +11,10 @@ module.exports = function yelpApi(input) {
         // yelp api call
         fetchUrl(`https://api.yelp.com/v3/businesses/search?term=${input}&location=charlotte_nc`, options, function (error, meta, body) {
             var obj = JSON.parse(body);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 751103de9941a9dce923e62c5203014956f2ae67
             console.log("OBJ first call ",obj.businesses[0].location);
             var result = obj.businesses[0];
             var id = result.id; // used to get the reviews from the yelp in the API call below for business reviews
@@ -106,4 +110,8 @@ module.exports = function yelpApi(input) {
             });
         });
     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 751103de9941a9dce923e62c5203014956f2ae67
 };

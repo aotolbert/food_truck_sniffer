@@ -20,6 +20,10 @@ var yelpApiTimer = setInterval(function () {
 
 // server-side API call to yelp
 function runApiArray(truckArray) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 751103de9941a9dce923e62c5203014956f2ae67
     for (let i = 0; i < truckArray.length; i++) {
         yelpApi(truckArray[i]).then(function (response) {
             // console.log(response);
