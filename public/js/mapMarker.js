@@ -47,8 +47,9 @@ function addMarker(marker) {
     // Marker click listener
     google.maps.event.addListener(mapMarker, 'click', (function(mapMarker, content) {
       return function() {
+        console.log("we made it here")
         infowindow.setContent(content);
-        infowindow.open(map, mapMarker);
+        // infowindow.open(map, mapMarker);
         //map.panTo(this.getPosition());
         generateRelated(mapMarker);
       }
@@ -69,15 +70,17 @@ function getLocationContent(location) {
 }
 
 function generateRelated(marker){
+  console.log("generateRelated",marker)
   $('#output').text('');
   $('#output').html(generateServices(marker));
 }
 
 function generateServices(location){
   var serviceCards=[];
-  
-  for(var x in location.locationData.taxonomy.services){
-      var serviceID = location.locationData.taxonomy.services[x];
+  console.log(serviceCards);
+  for (var x in mapData.key.serviceData.services) {
+    console.log(mapData.key.serviceData.services);
+      var serviceID = location.locationData;
         serviceCards.push(serviceTemplate(mapData.key.serviceData.services[serviceID]));
       }
   return serviceCards.join('')

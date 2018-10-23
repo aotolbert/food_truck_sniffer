@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-    "password": "" ,
-=======
     "password": "root",
->>>>>>> 0e045e56dc2e0bf941751cc1d1830a704e72d32d
     "database": "foodtrucks_db",
     "host": "localhost",
     "dialect": "mysql"
