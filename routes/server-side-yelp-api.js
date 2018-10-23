@@ -45,8 +45,9 @@ function runApiArray(truckArray) {
                             FoodTruckId: FoodTruckId
                         })
                     }
-                    if (dbAddressField === null) {
-                        console.log('dbAdressField is NULL will update address to default')
+                    if (dbAddressField === null && !Response.address === "") {
+                        Response.address
+                        console.log('dbAdressField is NULL will update address to default',Response.address)
                         db.FoodTruck.update({
                             address: Response.address,
                             phone: Response.phone,
