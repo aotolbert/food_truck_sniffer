@@ -11,6 +11,7 @@ module.exports = function(app) {
     ) {
       console.log("dbFoodTruck" + dbFoodtruck);
       res.render("index", {
+        apiKey: process.env.GOOGLE_API_KEY,
         msg: "This is empty Space! Handlebar message",
         FoodTruck: dbFoodtruck
       });
