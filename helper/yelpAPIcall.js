@@ -1,16 +1,36 @@
 var fetchUrl = require("fetch").fetchUrl;
 
-
 module.exports = function yelpApi(input) {
-    var options = {
-        headers: {
-            "authorization": "Bearer o9xNuv18aSk-fu_WL-8YoXbq9oiB-E24VVSuR1Nw4T4WND_fd1teCzTbfzT42mOqLIny_F7eiWazQwJViIQau6liQDy2FxuabwEogcATxcpEI3Sf4wgSrjrSkVDCW3Yx"
-        }
+  var options = {
+    headers: {
+      authorization:
+        "Bearer o9xNuv18aSk-fu_WL-8YoXbq9oiB-E24VVSuR1Nw4T4WND_fd1teCzTbfzT42mOqLIny_F7eiWazQwJViIQau6liQDy2FxuabwEogcATxcpEI3Sf4wgSrjrSkVDCW3Yx"
     }
-    return new Promise((resolve, reject) => {
-        // yelp api call
-        fetchUrl(`https://api.yelp.com/v3/businesses/search?term=${input}&location=charlotte_nc`, options, function (error, meta, body) {
+  };
+  return new Promise((resolve, reject) => {
+    console.log(reject);
+    // yelp api call
+    fetchUrl(
+      `https://api.yelp.com/v3/businesses/search?term=${input}&location=charlotte_nc`,
+      options,
+      function(error, meta, body) {
+        var obj = JSON.parse(body);
+        console.log("OBJ first call ", obj);
+        var result = obj.businesses[0];
+        var id = result.id; // used to get the reviews from the yelp in the API call below for business reviews
+        // var company = result.name;
+        var foodPicture = result.image_url;
+        // var category = result.categories[0].title;
+        var overallRating = result.rating;
+        var price = result.price;
+        var phone = result.display_phone;
+
+        fetchUrl(
+          `https://api.yelp.com/v3/businesses/${id}/reviews`,
+          options,
+          function(error, meta, body) {
             var obj = JSON.parse(body);
+
             console.log("OBJ first call ",obj.businesses[0].location);
             var result = obj.businesses[0];
             var id = result.id; // used to get the reviews from the yelp in the API call below for business reviews
@@ -106,4 +126,5 @@ module.exports = function yelpApi(input) {
             });
         });
     });
+
 };

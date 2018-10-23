@@ -16,3 +16,9 @@ CREATE DATABASE  foodtrucks_db;
 --     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 --     PRIMARY KEY (id)
 -- );
+
+USE foodtrucks_db;
+SELECT * FROM yelpreviews;
+
+USE foodtrucks_db;
+SELECT * FROM foodtrucks;

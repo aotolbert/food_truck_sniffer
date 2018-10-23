@@ -1,22 +1,21 @@
 module.exports = function(sequelize, DataTypes) {
   var YelpReview = sequelize.define("YelpReview", {
     rating: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        isInt: true
-      }
+      type: DataTypes.DECIMAL,
+      allowNull: false
     },
+    //Why are we including this?//
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1]
       }
     },
     content: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
+      defaultValue: "This is content",
       validate: {
         len: [1]
       }

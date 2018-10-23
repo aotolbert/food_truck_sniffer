@@ -2,24 +2,30 @@ var yelpApi = require("../helper/yelpAPIcall");
 var db = require("../models");
 
 // call to the database to receive the names of the food trucks stored
-function populateArray(){
-   let truckNamesFromDatabase = [];
-    db.FoodTruck.findAll({
+function populateArray() {
+  let truckNamesFromDatabase = [];
+  db.FoodTruck.findAll({
     attributes: ["name"]
-}).then(function (results) {
-    for (var g = 0; g < results.length; g++) {
+  })
+    .then(function(results) {
+      for (var g = 0; g < results.length; g++) {
         truckNamesFromDatabase.push(results[g].dataValues.name);
-    }
-}).then(function(){runApiArray(truckNamesFromDatabase)})}
+      }
+    })
+    .then(function() {
+      runApiArray(truckNamesFromDatabase);
+    });
+}
 
 // setInterval to make API call to yelp once per day, updating the info for each food truck
 
-var yelpApiTimer = setInterval(function () {
-    populateArray();
+setInterval(function() {
+  populateArray();
 }, 30 * 1000); // run yelp API every 12 hours  insert  ( 12 * 60 * 60 * 1000 )
 
 // server-side API call to yelp
 function runApiArray(truckArray) {
+
     for (let i = 0; i < truckArray.length; i++) {
         yelpApi(truckArray[i]).then(function (response) {
             // console.log(response);
@@ -79,6 +85,25 @@ function runApiArray(truckArray) {
                     // console.log(result);
                 });
             });
+          }
+          db.FoodTruck.update(
+            {
+              phone: Response.phone,
+              overallRating: Response.rating,
+              image: Response.image_url,
+              priceRating: Response.price
+            },
+            {
+              where: {
+                id: FoodTruckId
+              }
+            }
+          );
         })
-    }
+        .then(function(result) {
+          // console.log("saved to database");
+          console.log(result);
+        });
+    });
+  }
 }
