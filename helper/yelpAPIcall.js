@@ -4,7 +4,7 @@ var fetchUrl = require("fetch").fetchUrl;
 module.exports = function yelpApi(input) {
     var options = {
         headers: {
-            "authorization": "Bearer o9xNuv18aSk-fu_WL-8YoXbq9oiB-E24VVSuR1Nw4T4WND_fd1teCzTbfzT42mOqLIny_F7eiWazQwJViIQau6liQDy2FxuabwEogcATxcpEI3Sf4wgSrjrSkVDCW3Yx"
+            "authorization": process.env.YELP_API_TOKEN
         }
     }
     return new Promise((resolve, reject) => {
