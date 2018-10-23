@@ -14,10 +14,10 @@
 <body>
 <div class="container-fluid">
     <div class="row row-height">
-      <div class="col-lg-3 m-0 p-0" id="scrolly">
+  <div class="col-lg-3 m-0 p-0" id="scrolly" style="display: none;">
         <div id="output"></div>
       </div>
-      <div class="col-lg-9 p-0">
+      <div class="col-lg p-0">
         <div id="map-canvas"></div>
       </div>
       <!-- <div id="log"></div> -->
@@ -272,6 +272,7 @@
            // infowindow.open(map, mapMarker);
             //map.panTo(this.getPosition());
             generateRelated(mapMarker);
+            $('#scrolly').removeAttr('style');
             //console.log("after generate related mapMarker",mapMarker)
   
           }
