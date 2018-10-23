@@ -1,22 +1,13 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-lg-4">
-      {{!-- {{msg}} --}}
-      <h3>Local Food Trucks:</h3>
-      <ul id="example-list" class="list-group-item">
-        
-        {{#each FoodTruck}}
-      {{> trucks/truck-block}}
-      {{!-- {{> trucks/yelp-block}} --}}
-        {{/each}}
-    
-      </ul>
+    <div class="row row-height">
+      <div class="col-lg-3 m-0 p-0" id="scrolly">
+        <div id="output"></div>
+      </div>
+      <div class="col-lg-9 p-0">
+        <div id="map-canvas"></div>
+      </div>
+      <div id="log"></div>
     </div>
-    <div class="col-lg-8" id="map">
-      <!-- <div id="map"></div> -->
-    </div>
-
-  </div>
 </div>
 
 
@@ -32,7 +23,7 @@
   var labelIndex = 0;
 
   function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('map-canvas'), {
       zoom: 13,
       center: { lat: 35.22, lng: -80.84 }
     });
@@ -42,6 +33,7 @@
       type: "GET",
     }).then(
       function (response) {
+        console.log(response);
         for (let i = 0; i < response.length; i++) {
           let newOBJ = response[i];
           console.log("Object being added to truckOBJs: ", newOBJ);
@@ -123,11 +115,11 @@
               icon: image,
               shape: shape,
               animation: google.maps.Animation.DROP,
-              //customInfo: "Marker " + v,
+         //     customInfo: "Marker " + truckOBJs[0].name,
 
               });
-                            marker.addListener('click', function() {
-                console.log("I'm Being Clicked!!")
+              marker.addListener('click', function() {
+                console.log("Clicked marker" + truckOBJs[i].twitterId)
                 infowindow.open(map, marker);
               });
             v++;
