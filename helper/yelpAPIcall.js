@@ -4,7 +4,7 @@ var fetchUrl = require("fetch").fetchUrl;
 module.exports = function yelpApi(input) {
     var options = {
         headers: {
-            "authorization": YELP_API_TOKEN
+            "authorization": process.env.YELP_API_TOKEN
         }
     }
     return new Promise((resolve, reject) => {
