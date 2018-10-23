@@ -72,10 +72,10 @@
       <!-- Contact Section -->
         <div class="row">
           <div class="list-group text-center col-12 pr-0">
-            <a href=tel:{{phone}} class="list-group-item list-group-item-action ">
+            <a class="list-group-item list-group-item-action ">
               Phone Number: {{phone}}
             </a>
-            <a href={{website}} target="_blank" class="list-group-item list-group-item-action">
+            <a href={{url}} target="_blank" class="list-group-item list-group-item-action">
               Website: {{url}}
             </a>
         </div>
@@ -83,8 +83,10 @@
       <!-- Twitter Section -->
       <div class="row">
         <div class="service-entry">
-          <div class='imgwrap p-0' >
-            <img src="{{tweet}}" style="width: 100%" />
+          <div class='imgwrap p-0' id="twitterDisplay">
+              <a class="twitter-timeline" data-tweet-limit="2" data-height="300" href="https://twitter.com/{{twitterId}}"></a>
+  <script async src="//platform.twitter.com/widgets.js"></script>
+
           </div>
         </div>
       </div>
@@ -108,7 +110,6 @@
   </script>
   
   
-  <script async src="//platform.twitter.com/widgets.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
 <!--   
@@ -193,6 +194,7 @@
             ID: servicesID,
             type: "Main",
             latLong: latLong,
+            truckOBJ: truckOBJs[i],
             taxonomy: {
           locations: [
             '123-432-234',
@@ -267,14 +269,16 @@
             //console.log("mapMarker",mapMarker)
             //console.log("content",content)
             //console.log("infowindow",infowindow)
-            console.log("You clicked me: ",content,map,mapMarker);
+            console.log("You clicked me: ",mapMarker.locationData.truckOBJ.twitterId, "=================");
            // infowindow.setContent(content);
            // infowindow.open(map, mapMarker);
             //map.panTo(this.getPosition());
             generateRelated(mapMarker);
             $('#scrolly').removeAttr('style');
+            // $('#twitterDisplay').html(`<a class="twitter-timeline" data-tweet-limit="2" data-height="300" href="https://twitter.com/${mapMarker.locationData.truckOBJ.twitterId}"></a>`)
             //console.log("after generate related mapMarker",mapMarker)
-  
+            // twitterEmbed(mapMarker.locationData.truckOBJ.twitterId);
+            
           }
         })(mapMarker, content));
       }
@@ -310,6 +314,13 @@
         }
     return serviceCards.join('')
     }
+
+    function twitterEmbed (truckTwitterName) {
+      var tweetDiv = $("#twitterDisplay");
+      var embedElement = `<a class="twitter-timeline" data-tweet-limit="2" data-height="300" href="https://twitter.com/${truckTwitterName}"></a>`
+      $("#twitterDisplay").append(embedElement);
+      };
+
     initialize();
   </script>
   <!-- <script>
