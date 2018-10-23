@@ -1,13 +1,9 @@
 # vigalant-disco
 Group Project 2
-<<<<<<< HEAD
+Core Idea: Create a Charlotte food truck application that allows people to know what is available in your area
+Necessities -
 
 
-This is a test of the emergeny broadcast systemn
 
-Food Truck Sniffer
-=======
-Blah Blah Blah
 
-Blah Blah Blah Blah
->>>>>>> 00d3ec2bf5cfc2aae28b211d67b2a391c675f690
+Icebox - git

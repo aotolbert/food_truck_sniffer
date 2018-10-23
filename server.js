@@ -16,50 +16,52 @@ app.use(express.static("public"));
 
 console.log(process.env.TWITTER_API_SECRET);
 
-// var webhook = twitterWebhook.userActivity({
-//   serverUrl: "https://foodtrucksniffer.herokuapp.com",
-//   route: "/webhook/twitter",
-//   consumerKey: process.env.TWITTER_API_KEY,
-//   consumerSecret: process.env.TWITTER_API_SECRET,
-//   accessToken: process.env.TWITTER_ACCESS_TOKEN,
-//   accessTokenSecret: process.env.TWITTER_ACCESS_SECRET,
-//   environment: process.env.TWITTER_WEBHOOK_ENV
-// });
+var webhook = twitterWebhook.userActivity({
+  serverUrl: "https://foodtrucksniffer.herokuapp.com",
+  route: "/webhook/twitter",
+  consumerKey: process.env.TWITTER_API_KEY,
+  consumerSecret: process.env.TWITTER_API_SECRET,
+  accessToken: process.env.TWITTER_ACCESS_TOKEN,
+  accessTokenSecret: process.env.TWITTER_ACCESS_SECRET,
+  environment: process.env.TWITTER_WEBHOOK_ENV
+});
 
-// webhook.getWebhook().then(function(data) {
-//   if (!data[0].valid) {
-//     webhook.register();
+webhook.getWebhook().then(function(data) {
+  if (!data[0].valid) {
+    webhook.register();
 
-//     webhook.subscribe({
-//       userId: process.env.TWITTER_USER_ID,
-//       accessToken: process.env.TWITTER_ACCESS_TOKEN,
-//       accessTokenSecret: process.env.TWITTER_ACCESS_SECRET
-//     });
-//   }
-// });
+    webhook.subscribe({
+      userId: process.env.TWITTER_USER_ID,
+      accessToken: process.env.TWITTER_ACCESS_TOKEN,
+      accessTokenSecret: process.env.TWITTER_ACCESS_SECRET
+    });
+  }
+});
 
-// webhook.on("event", function(event, userId, data) {
-//   var arr = data.text.split("|")[0];
-//   var address = arr
-//     .split(" ")
-//     .slice(1)
-//     .join(" ");
+webhook.on("event", function(event, userId, data) {
+  var arr = data.text.split("|")[0];
+  var address = arr
+    .split(" ")
+    .slice(1)
+    .join(" ");
 
-//   db.FoodTruck.update(
-//     {
-//       address: address,
-//       createdAt: data.created_at
-//     },
-//     {
-//       where: {
-//         twitterId: `@${data.user.screen_name}`
-//       }
-//     }
-//   ).then(function(udpatedLocation) {
-//     console.log(udpatedLocation);
-//   });
-//   console.log("Event received: " + event);
-// });
+  db.FoodTruck.update(
+    {
+      address: address,
+      addressUpdated: data.created_at
+    },
+    {
+      where: {
+        twitterId: `@${data.user.screen_name}`
+        //Use below for demo
+        //name: data.user.name
+      }
+    }
+  ).then(function(udpatedLocation) {
+    console.log(udpatedLocation);
+  });
+  console.log("Event received: " + event);
+});
 
 // Handlebars
 app.engine(
@@ -71,7 +73,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-// app.use("/", webhook);
+app.use("/", webhook);
 // require("./routes/apiRoutes")(app);
 // require("./routes/apiRoutes")(app);
 require("./routes/yelpreview-api-routes")(app);
@@ -82,12 +84,12 @@ require("./routes/server-side-yelp-api");
 // Helper
 require("./helper/yelpAPIcall");
 
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
-// If running a test, set syncOptions.force to true
+// If running a test, set syncOptions.force to false
 // clearing the `testdb`
 if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
+  syncOptions.force = false;
 }
 
 // Starting the server, syncing our models ------------------------------------/
