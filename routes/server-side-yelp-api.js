@@ -28,6 +28,7 @@ function runApiArray(truckArray) {
             let Response = response;
             db.FoodTruck.findAll({ where: { name: truckArray[i] } }).then(function (dbFoodTruck) {
                 FoodTruckId = dbFoodTruck[0].id
+               let exisitngAddress = dbFoodTruck[0].address;
                 var dbAddressField = dbFoodTruck[0].addressUpdated;
                 db.YelpReview.destroy({
                     where: {
@@ -45,8 +46,10 @@ function runApiArray(truckArray) {
                             FoodTruckId: FoodTruckId
                         })
                     }
-                    if (dbAddressField === null && !Response.address === "") {
-                        Response.address
+                    if (dbAddressField === null){
+                       if(Response.address === "") {
+                        Response.address = exisitngAddress
+                        }
                         console.log('dbAdressField is NULL will update address to default',Response.address)
                         db.FoodTruck.update({
                             address: Response.address,
