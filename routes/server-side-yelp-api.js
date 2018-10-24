@@ -14,7 +14,7 @@ function populateArray(){
 
 // setInterval to make API call to yelp once per day, updating the info for each food truck
 
-setTimeout(populateArray(), 30 * 1000) // does a call after 30s
+setTimeout(populateArray, 30 * 1000) // does a call after 30s
 setInterval(function () {
     populateArray();
 }, 30 * 1000 * 10) // every 5 mins make a call
