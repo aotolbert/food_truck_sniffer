@@ -40,8 +40,9 @@ h1, h2, h3, h4, h5, h6, p {
   margin:0em;
 }
 #nav {
-  float: right;
+  float: center;
     list-style-type: none;
+
   /* list-style-type: none; */
   /* display: inline; */
   /* float: left; */
@@ -69,10 +70,10 @@ h1, h2, h3, h4, h5, h6, p {
   overflow-y: scroll; 
 }
 .row-height {
-  height: 95vh;
+  height: 93vh;
 }
 .row-height-header {
-  height: 5vh;
+  height: 7vh;
 }
 .contentWrap{
   float:left;
