@@ -17,7 +17,7 @@ function populateArray(){
 setTimeout(populateArray, 30 * 1000) // does a call after 30s
 setInterval(function () {
     populateArray();
-}, 30 * 1000 * 10) // every 5 mins make a call
+}, 1000 * 60 * 60 * 12) // every 12 hr make a call
 
 // server-side API call to yelp
 function runApiArray(truckArray) {
