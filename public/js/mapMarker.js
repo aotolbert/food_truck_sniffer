@@ -16,7 +16,7 @@ function initialize() {
     styles: mapStyle
   };
 
-  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
   for (i = 0; i < mapData.dataPoints.locations.length; i++) {
     addMarker(mapData.dataPoints.locations[i]);
@@ -26,33 +26,37 @@ function initialize() {
 function addMarker(marker) {
   var location = getLocation(marker);
   if (location) {
-    var category = marker.type
+    var category = marker.type;
     var title = location.name;
-    var latLong = marker.latLong.split(',');
-    var pos = new google.maps.LatLng(latLong[0],latLong[1]);
+    var latLong = marker.latLong.split(",");
+    var pos = new google.maps.LatLng(latLong[0], latLong[1]);
     var content = getLocationContent(location);
-    
-    $.extend( location, marker )
-    
+
+    $.extend(location, marker);
+
     mapMarker = new google.maps.Marker({
       title: title,
       position: pos,
       category: category,
-      locationData:location,
+      locationData: location,
       map: map
     });
 
     gmarkers.push(mapMarker);
 
     // Marker click listener
-    google.maps.event.addListener(mapMarker, 'click', (function(mapMarker, content) {
-      return function() {
-        infowindow.setContent(content);
-        infowindow.open(map, mapMarker);
-        //map.panTo(this.getPosition());
-        generateRelated(mapMarker);
-      }
-    })(mapMarker, content));
+    google.maps.event.addListener(
+      mapMarker,
+      "click",
+      (function(mapMarker, content) {
+        return function() {
+          infowindow.setContent(content);
+          infowindow.open(map, mapMarker);
+          //map.panTo(this.getPosition());
+          generateRelated(mapMarker);
+        };
+      })(mapMarker, content)
+    );
   }
 }
 
@@ -68,18 +72,20 @@ function getLocationContent(location) {
   return locTemplate(location);
 }
 
-function generateRelated(marker){
-  $('#output').text('');
-  $('#output').html(generateServices(marker));
+function generateRelated(marker) {
+  $("#output").text("");
+  $("#output").html(generateServices(marker));
 }
 
-function generateServices(location){
-  var serviceCards=[];
-  
-  for(var x in location.locationData.taxonomy.services){
-      var serviceID = location.locationData.taxonomy.services[x];
-        serviceCards.push(serviceTemplate(mapData.key.serviceData.services[serviceID]));
-      }
-  return serviceCards.join('')
+function generateServices(location) {
+  var serviceCards = [];
+
+  for (var x in location.locationData.taxonomy.services) {
+    var serviceID = location.locationData.taxonomy.services[x];
+    serviceCards.push(
+      serviceTemplate(mapData.key.serviceData.services[serviceID])
+    );
+  }
+  return serviceCards.join("");
 }
 initialize();
