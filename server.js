@@ -1,13 +1,13 @@
 require("dotenv").config();
-var express = require("express");
-var exphbs = require("express-handlebars");
-var bodyParser = require("body-parser");
-var twitterWebhook = require("twitter-webhooks");
+const express = require("express");
+const exphbs = require("express-handlebars");
+const bodyParser = require("body-parser");
+const twitterWebhook = require("twitter-webhooks");
 
-var db = require("./models");
+const db = require("./models");
 
-var app = express();
-var PORT = process.env.PORT || 3000;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 //Config for Twitter Webhook
-var webhook = twitterWebhook.userActivity({
+const webhook = twitterWebhook.userActivity({
   serverUrl: "https://foodtrucksniffer.herokuapp.com",
   route: "/webhook/twitter",
   consumerKey: process.env.TWITTER_API_KEY,
@@ -26,7 +26,7 @@ var webhook = twitterWebhook.userActivity({
 });
 
 //Checks for registered webhook. Registers & subscribes if none is found.
-webhook.getWebhook().then(function(data) {
+webhook.getWebhook().then(data => {
   if (!data[0].valid) {
     webhook.register();
 
@@ -39,9 +39,9 @@ webhook.getWebhook().then(function(data) {
 });
 
 //On Twitter event, update the database with new address.
-webhook.on("event", function(event, userId, data) {
-  var arr = data.text.split("|")[0];
-  var address = arr
+webhook.on("event", (event, userId, data) => {
+  const arr = data.text.split("|")[0];
+  const address = arr
     .split(" ")
     .slice(1)
     .join(" ");
@@ -56,10 +56,7 @@ webhook.on("event", function(event, userId, data) {
         twitterId: `@${data.user.screen_name}`
       }
     }
-  ).then(function(udpatedLocation) {
-    console.log(udpatedLocation);
-  });
-  console.log("Event received: " + event);
+  ).then(udpatedLocation => console.log(udpatedLocation));
 });
 
 // Handlebars
@@ -81,7 +78,7 @@ require("./routes/server-side-yelp-api");
 // Helper
 require("./helper/yelpAPIcall");
 
-var syncOptions = { force: false };
+const syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to false
 // clearing the `testdb`
@@ -90,14 +87,12 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(() => {
+  app.listen(PORT, () =>
     console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      PORT,
-      PORT
-    );
-  });
+      `==> 🌎  Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`
+    )
+  );
 });
 
 module.exports = app;
