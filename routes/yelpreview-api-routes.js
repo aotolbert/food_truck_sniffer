@@ -31,7 +31,7 @@ module.exports = app => {
   });
 
   // POST route for saving a new post
-  app.post("/api/yelpreviews", (req, res) {
+  app.post("/api/yelpreviews", (req, res) => {
     db.YelpReview.create(req.body).then(dbYelpReview => {
       res.json(dbYelpReview);
     });
