@@ -1,11 +1,11 @@
-var db = require("../models");
+const db = require("../models");
 
-module.exports = function (app) {
+module.exports = app => {
   // Load index page
   // app.get("/", function(req, res) {
   //   res.sendFile(path.join(__dirname, "../public/index.html"));
   // });
-  app.get("/", function(req, res) {
+  app.get("/", (req, res) => {
     db.FoodTruck.findAll({ include: [db.YelpReview] }).then(function (
       dbFoodtruck
     ) {
@@ -16,7 +16,7 @@ module.exports = function (app) {
       });
     });
   });
-  app.get("/admin", function(req, res) {
+  app.get("/admin", (req, res) => {
     res.render("admin", {
       msg: "Admin Page"
     });
@@ -31,7 +31,7 @@ module.exports = function (app) {
   // });
 
 // Render 404 page for any unmatched routes
-app.get("*", function (req, res) {
+app.get("*", (req, res) => {
   res.render("404");
 });
 };
