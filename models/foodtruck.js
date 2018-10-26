@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   var FoodTruck = sequelize.define("FoodTruck", {
     // From Admin input
     name: {
@@ -71,7 +71,7 @@ module.exports = function(sequelize, DataTypes) {
     //   "start": "1730"
     // }
   });
-  FoodTruck.associate = function(models) {
+  FoodTruck.associate = models => {
     // Associating FoodTruck with YelpReviews
     // When an FoodTruck is deleted, also delete any associated YelpReviews
     FoodTruck.hasMany(models.YelpReview, {
