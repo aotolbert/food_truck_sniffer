@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   var YelpReview = sequelize.define("YelpReview", {
     rating: {
       type: DataTypes.INTEGER,
@@ -33,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  YelpReview.associate = function(models) {
+  YelpReview.associate = models => {
     // We're saying that a YelpReview should belong to an FoodTruck
     // A YelpReview can't be created without an FoodTruck due to the foreign key constraint
     YelpReview.belongsTo(models.FoodTruck, {
