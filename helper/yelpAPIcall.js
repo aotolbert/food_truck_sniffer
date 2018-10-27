@@ -71,7 +71,9 @@ module.exports = function yelpApi(input) {
                     reviewUrl:[review_1_url,review_2_url,review_3_url]
                 }
                 resolve(yelpTruckResult);
-            });}
+            });}else{
+                console.log("Yelp Call Failed")
+            }
         });
     });
 };
