@@ -4,14 +4,15 @@ var fetchUrl = require("fetch").fetchUrl;
 module.exports = function yelpApi(input) {
     var options = {
         headers: {
-            "authorization": "Bearer o9xNuv18aSk-fu_WL-8YoXbq9oiB-E24VVSuR1Nw4T4WND_fd1teCzTbfzT42mOqLIny_F7eiWazQwJViIQau6liQDy2FxuabwEogcATxcpEI3Sf4wgSrjrSkVDCW3Yx"
+            "authorization": process.env.YELP_API_TOKEN
         }
     }
     return new Promise((resolve, reject) => {
         // yelp api call
         fetchUrl(`https://api.yelp.com/v3/businesses/search?term=${input}&location=charlotte_nc`, options, function (error, meta, body) {
             var obj = JSON.parse(body);
-            console.log("OBJ first call ",obj.businesses[0].location);
+            if(obj.businesses){
+            console.log("OBJ first call ",obj);
             var result = obj.businesses[0];
             var id = result.id; // used to get the reviews from the yelp in the API call below for business reviews
             var company = result.name;
@@ -52,39 +53,6 @@ module.exports = function yelpApi(input) {
                 var review_3_image = obj.reviews[2].user.image_url;
                 var review_3_url = obj.reviews[2].url;
 
-
-                
-
-
-                //             console.log(`
-
-                //     yelpID: ${id},
-                //     company name: ${company},
-                //     food pic: ${foodPicture},
-                //     category: ${category},
-                //     overall rating: ${overallRating},
-                //     price: ${price},
-                //     phone: ${phone},
-
-                //     REVIEW NUMBER 1.
-                //         REVIEW: ${review_1_text}
-                //         RATING BY USER: ${review_1_rating}
-                //         TIME: ${review_1_time}
-                //         USER INFO: ${review_1_author}
-
-                //     REVIEW NUMBER 2.
-                //         REVIEW: ${review_2_text}
-                //         RATING BY USER: ${review_2_rating}
-                //         TIME: ${review_2_time}
-                //         USER INFO: ${review_2_author}
-
-                //     REVIEW NUMBER 3.
-                //         REVIEW: ${review_3_text}
-                //         RATING BY USER: ${review_3_rating}
-                //         TIME: ${review_3_time}
-                //         USER INFO: ${review_3_author}
-
-                //   `)
                 
                 // objects with API results exported to yelp-api-routes.js
                 yelpTruckResult = {
@@ -103,7 +71,7 @@ module.exports = function yelpApi(input) {
                     reviewUrl:[review_1_url,review_2_url,review_3_url]
                 }
                 resolve(yelpTruckResult);
-            });
+            });}
         });
     });
 };
