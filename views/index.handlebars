@@ -126,7 +126,7 @@
   function initialize() {
     var center = new google.maps.LatLng(33.4483771, -112.07403729999999);
     var mapOptions = {
-      zoom: 12,
+      zoom: 14,
       center: { lat: 35.22, lng: -80.84 },
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       styles: mapStyle
@@ -213,9 +213,12 @@
   };
 
   function addMarker(marker) {
-    console.log("Marker: ",marker)
+
+
+
+    console.log("Marker: ", marker)
     var location = getLocation(marker);
-    console.log("location: ",location)
+    console.log("location: ", location)
     if (location) {
       var category = marker.type
       var title = location.name;
@@ -223,6 +226,8 @@
       //console.log("latLong", latLong);
       var pos = new google.maps.LatLng(latLong[0], latLong[1]);
       var content = getLocationContent(location);
+
+      console.log(`Content: ${content}`)
 
       $.extend(location, marker)
 
