@@ -77,6 +77,8 @@ require("./routes/server-side-yelp-api");
 
 // Helper
 require("./helper/yelpAPIcall");
+require("./helper/fusionHelper");
+
 
 const syncOptions = { force: false };
 
