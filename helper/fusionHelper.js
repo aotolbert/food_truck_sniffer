@@ -30,7 +30,7 @@ function prepareGoogleinsertCall(){
 }
 
 function googleApiCall(method,body) {return new Promise((resolve, reject) => {
-    fetch("https://www.googleapis.com/fusiontables/v2/query", {
+    fetch("https://www.googleapis.com/fusiontables/v2/querysql=", {
     method: method,
     body:body
   },function(error, meta, body){
