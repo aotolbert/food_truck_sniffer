@@ -13,7 +13,7 @@ const path = require('path');
  * See the defaultauth.js sample for an alternate way of fetching compute credentials.
  */
 async function googleSQLquery(query) {
-  
+  console.log("Google Api call ran!!!!!")
   // Create a new JWT client using the key file downloaded from the Google Developer Console
   const client = await google.auth.getClient({
     keyFile: path.join(__dirname, 'jwt.keys.json'),
@@ -32,9 +32,12 @@ async function googleSQLquery(query) {
 
   return res.data;
 }
-
-googleSQLquery("INSERT INTO 1vJIoCXgQIU8nFSnQ3pfyw_kWhgnIdh8GmCRe-2If (TwitterId, Name, Phone, url, Address, overallRating, image, priceRating, YelpReviews) VALUES ('@HiyaFoodTruck','Hiya Food Truck', '(240) 670-4492', 'http://www.hiyafoodtruck.com/', '620 W Morehead St', '4', 'https://s3-media1.fl.yelpcdn.com/bphoto/CdXnN6QmOSTfaw0UsQZ04w/o.jpg', '$', 'undefined')")
-.catch(console.error);
+setTimeout(delay, 30 * 1000);
+function delay(){
+  googleSQLquery("INSERT INTO 1vJIoCXgQIU8nFSnQ3pfyw_kWhgnIdh8GmCRe-2If (TwitterId, Name, Phone, url, Address, overallRating, image, priceRating, YelpReviews) VALUES ('@HiyaFoodTruck','Hiya Food Truck', '(240) 670-4492', 'http://www.hiyafoodtruck.com/', '620 W Morehead St', '4', 'https://s3-media1.fl.yelpcdn.com/bphoto/CdXnN6QmOSTfaw0UsQZ04w/o.jpg', '$', 'undefined')")
+  .catch(console.error);
+  
+}
 
 
 module.exports = {googleSQLquery};
