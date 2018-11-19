@@ -69,7 +69,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-app.use("/", webhook);
+// app.use("/", webhook);
 require("./routes/yelpreview-api-routes")(app);
 require("./routes/trucks-api-routes")(app);
 require("./routes/htmlRoutes")(app);
