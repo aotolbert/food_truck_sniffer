@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "foodtruck-tester",
+    "private_key_id": "1f45852974b517878a8424a7a5d6ddc1aa68ac63",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCQle1W6FEGnd2s\nVbhi8jlFqGYMogzBKjHkdStTjLqb5CfLzSvlTECaBSSQh/LQlUOqvplOsidUTQ/s\nFwIlVi8WwvQqBI7dIw9JF50yIM/ALnChym7Qc/YaReDeXNw6kJYutLLin2W8dR/9\njLtObChgQv37AKzafcQGVdDKRqbJ6dXzWuch6PLlYyMJ/JrpW96xxogThcjHMRbP\nluZsgkiKWhWkGQM9aJICFfwebCZ5wOZasqfOb7yu/s5/rcGrKZWJ2Qy9mpVumZKy\nYHjIk89xuVB/gnAnfivgsonb+q5W/SgD/rcSYiOl1AYtepb4afAkSsCvi0kvl3xx\nlM/+OacFAgMBAAECggEAAQZPyCIkDHYBctEPs7acpJgvLI8+1zHPaGhSxIgpvJf9\nfTXPLHqU6Z9Rzt41YKuLu96XOdky3kE5wYLsCB8BsFMoElH1pjtzOaG7qQK8N8cy\n4D6neH3RF6B5QCVfbS3TPQtl4772V5A37nhsTZlTU7od0F6emvsxsLIA5XIVomnH\nJb+daLPOK4TYp23sEWwz3Y+MpVQVEtOJOYBaX6NIpOOWIkbgAnc8bkBPmmB+awxE\nNsa5wwVFdw2zr7COodDEFyNoa4AUiOARHQ7Ho/qggXdXbSz3lJ3dVpbi8GBdU0EW\nUOGG35pc2pxYV/UbOcbCLi5dJ9SYJ3/qvGqBZPAjmQKBgQDE/XIva6GlGEKnCm69\nJd+ArsaspQ9Rf+bK1hzKXzYNE4MhGX9Tv569m+CJWOIZQ8MWoJPAHmdbYExcrCVx\nhKi5Ft0MX4q9TDdvqopvyU77iOJVVXSszLxZi5xRHy4dlp0dwOXeTBt6It2pqje5\n3kYx/vhS4abMKuSFLidUeVX+CQKBgQC75cCdTPA0IUjYqqgTpS/CJ8+KscZqNeUZ\nDTHAjzyWpV7rzDbrd0JZaIdFI8teyqDRtx9aQSSGuC91xZ5ZQpZozqXtu5I1eanT\nQoqbFcZ52VNHRisAE7YiOZ+6UKdb9vayVl13qoDyVp6jHmS+WvDPIM4tph/OBNpN\nF85EBJTgHQKBgQCNTUe04D3JEQfujjs1Do+t3LDCcnv0eAxy/vcT6wv4gUCUY5fD\n2TXiyIddvhYhDUxJVNHnA2gcUY01BH6vWPs2GUJid74rXxp8zRYUbZBsOZown+Xb\nddi9Wrm8LuODceAt0YqR1IH5MD1UULc8akZr4nr56MceuL3HEn4/x/F5EQKBgFi2\nStB5qNcT9+7D9AMCdJ/4Z9aVxJYUyAuh3SGK/xIpFb3CdxOJBPxti6ArHDOu+2rI\nSLc2Fma8wzuZh/+gnp7xIgoyCv/QZ0vlGMfL6h9Rai42hMrOg6l5B17SAZI78ZGV\nkR+UkrjYCKH/EZWGHjfMx0tqKY39YIwRd0NJ3nhJAoGAD3iEyzB9BQV3AghTjU6c\nkZqP5YLMHtWSjjv/Ki1CtExIDt7s/IVVfTB89/yatYPd2U751vfNHkTQiRFI7/qe\nBqUFtWjfjXCQXc4IllYCs8S0/B5nrbH20v3AZ3LSfzXYXoXKJdRFdjhN78l9qNa9\nKqNo5bNe1eLbbMdDVFLrVFA=\n-----END PRIVATE KEY-----\n",
+    "client_email": "tester2@foodtruck-tester.iam.gserviceaccount.com",
+    "client_id": "110083809420473282285",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/tester2%40foodtruck-tester.iam.gserviceaccount.com"
+  }
